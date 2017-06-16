@@ -25,7 +25,7 @@ Plugin 'Tagbar'
 filetype plugin indent on
 
 
-"#----------------------------------------------------#
+"-------------------------------------------------------------------------------
 set number              " Show line numbers
 
 " allow backspacing over everything in insert mode
@@ -78,7 +78,7 @@ function! NumberToggle()
 endfunc
 nnoremap <C-n> :call NumberToggle()<cr>
 
-"#____________________________________________________#
+"--------------------------------- Solarized -----------------------------------
 " get solarized 256 colors to work while in tmux
 if $TERM == 'screen'
     set t_Co=256
@@ -106,7 +106,7 @@ let g:solarized_contrast = "high"
 " change Visual Mode highlighting colors
 hi Visual ctermbg=Yellow
 hi Visual ctermfg=DarkGray
-"#____________________________________________________#
+"-------------------------------------------------------------------------------
 
 
 if has("vms")
@@ -117,25 +117,25 @@ endif
 
 " Only do this part when compiled with support for autocommands.
 if has("autocmd")
-  " Enable file type detection.
-  " Use the default filetype settings, so that mail gets 'tw' set to 72,
-  " 'cindent' is on in C files, etc.
-  " Also load indent files, to automatically do language-dependent indenting.
-  filetype plugin indent on
-  " Put these in an autocmd group, so that we can delete them easily.
-  augroup vimrcEx
-  au!
-  " For all text files set 'textwidth' to 78 characters.
-  autocmd FileType text setlocal textwidth=78
-  " When editing a file, always jump to the last known cursor position.
-  " Don't do it when the position is invalid or when inside an event handler
-  autocmd BufReadPost *
-    \ if line("'\"") > 1 && line("'\"") <= line("$") |
-    \   exe "normal! g`\"" |
-    \ endif
-  augroup END
+    " Enable file type detection.
+    " Use the default filetype settings, so that mail gets 'tw' set to 72,
+    " 'cindent' is on in C files, etc.
+    " Also load indent files, to automatically do language-dependent indenting.
+    filetype plugin indent on
+    " Put these in an autocmd group, so that we can delete them easily.
+    augroup vimrcEx
+    au!
+    " For all text files set 'textwidth' to 78 characters.
+    autocmd FileType text setlocal textwidth=78
+    " When editing a file, always jump to the last known cursor position.
+    " Don't do it when the position is invalid or when inside an event handler
+    autocmd BufReadPost *
+        \ if line("'\"") > 1 && line("'\"") <= line("$") |
+        \   exe "normal! g`\"" |
+        \ endif
+    augroup END
 else
-  set autoindent        " always set autoindenting on
+    set autoindent        " always set autoindenting on
 endif " has("autocmd")
 
 " Convenient command to see the difference between the current buffer and the
