@@ -1,15 +1,13 @@
+"-------------------------------- Vundle Setup ---------------------------------
 " Use Vim settings, rather than Vi settings (much better!).
 " This must be first, because it changes other options as a side effect.
-
-"-------------------------------- Vundle Setup ---------------------------------
 set nocompatible
 filetype off
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
 " This is the Vundle package, which can be found on GitHub.
-" For GitHub repos, you specify plugins using the
-" 'user/repository' format
+" For GitHub repos, you specify plugins using the 'user/repository' format
 Plugin 'gmarik/vundle'
 
 " We could also add repositories with a '.git' extension
@@ -153,13 +151,19 @@ endif
 
 "----------------------------------- Tagbar ------------------------------------
 let g:tagbar_ctags_bin='/usr/local/bin/ctags'   " Proper Ctags locations
-let g:tagbar_width = 30                         " Default is 40, seems too wide
+let g:tagbar_width = 35                         " Default is 40, seems too wide
 let g:tagbar_sort  = 0                          " Do not alpha-sort names
 noremap <silent> <Leader>t :TagbarToggle<CR>    " Display panel with \+t
 
 
 "---------------------------------- NERDTree -----------------------------------
 noremap <silent> <Leader>n :NERDTreeToggle<CR>  " Display NERDTree panel: \+n
+
+" automatically close NERDTree when quitting vim (if it's the only buffer)
+autocmd bufenter * if (winnr("$") == 1
+            \ && exists("b:NERDTree")
+            \ && b:NERDTree.isTabTree()) 
+            \| q | endif
 
 
 "---------------------------------- Airline ------------------------------------
