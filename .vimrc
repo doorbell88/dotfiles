@@ -1,6 +1,30 @@
 " Use Vim settings, rather than Vi settings (much better!).
 " This must be first, because it changes other options as a side effect.
+
+"-------------------------------- Vundle Setup ---------------------------------
 set nocompatible
+filetype off
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+" This is the Vundle package, which can be found on GitHub.
+" For GitHub repos, you specify plugins using the
+" 'user/repository' format
+Plugin 'gmarik/vundle'
+
+" We could also add repositories with a '.git' extension
+Plugin 'scrooloose/nerdtree.git'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+
+" To get plugins from Vim Scripts, you can reference the plugin
+" by name as it appears on the site
+Plugin 'Tagbar'
+
+" Now we can turn our filetype functionality back on
+filetype plugin indent on
+
+
 "#----------------------------------------------------#
 set number              " Show line numbers
 
@@ -43,19 +67,18 @@ map Y y$
 "toggle between absolute / relative line numbers
 " number > relativenumber > nonumber > number
 function! NumberToggle()
-    if(&relativenumber == 1)
+    if(&number == 1)
+        set relativenumber
+    elseif(&relativenumber == 1)
         set nonumber
         set norelativenumber
-    elseif(&number == 1)
-        set relativenumber
-        set nonumber
-    else 
+    else
         set number
     endif
 endfunc
 nnoremap <C-n> :call NumberToggle()<cr>
 
-"#____________________________________________________# 
+"#____________________________________________________#
 " get solarized 256 colors to work while in tmux
 if $TERM == 'screen'
     set t_Co=256
@@ -83,7 +106,7 @@ let g:solarized_contrast = "high"
 " change Visual Mode highlighting colors
 hi Visual ctermbg=Yellow
 hi Visual ctermfg=DarkGray
-"#____________________________________________________# 
+"#____________________________________________________#
 
 
 if has("vms")
@@ -91,13 +114,6 @@ if has("vms")
 else
   set backup        " keep a backup file
 endif
-
-" Don't use Ex mode, use Q for formatting
-map Q gq
-
-" CTRL-U in insert mode deletes a lot.  Use CTRL-G u to first break undo,
-" so that you can undo CTRL-U after inserting a line break.
-inoremap <C-U> <C-G>u<C-U>
 
 " Only do this part when compiled with support for autocommands.
 if has("autocmd")
@@ -129,3 +145,57 @@ if !exists(":DiffOrig")
   command DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis
           \ | wincmd p | diffthis
 endif
+
+
+"===============================================================================
+"                                   PLUGINS
+"===============================================================================
+
+"----------------------------------- Tagbar ------------------------------------
+let g:tagbar_ctags_bin='/usr/local/bin/ctags'   " Proper Ctags locations
+let g:tagbar_width = 30                         " Default is 40, seems too wide
+let g:tagbar_sort  = 0                          " Do not alpha-sort names
+noremap <silent> <Leader>t :TagbarToggle<CR>    " Display panel with \+t
+
+
+"---------------------------------- NERDTree -----------------------------------
+noremap <silent> <Leader>n :NERDTreeToggle<CR>  " Display NERDTree panel: \+n
+
+
+"---------------------------------- Airline ------------------------------------
+let g:airline_theme = 'wombat'                  " luna, solarized, wombat
+let g:airline#extensions#tabline#enabled = 1    " Display all buffers
+let g:airline#extensions#tabline#fnamemod =':t' " Display just the filename
+
+" Tab navigation
+nnoremap <leader>[ :bprevious<CR>               " Previous buffer
+nnoremap <leader>] :bnext<CR>                   " Next buffer
+nnoremap <leader>bq :bn <BAR> bd #<CR>          " Close current buffer (tab)
+
+" ASCII vs unicode (symbols)
+set encoding=utf-8                              " for symbols
+let g:airline_symbols_ascii = 1                 " Plain ASCII symbols
+"let g:airline_powerline_fonts = 1               " Automatically populate symbols
+
+" unicode symbols
+"let g:airline_left_sep = '»'
+"let g:airline_left_sep = '▶'
+"let g:airline_right_sep = '«'
+"let g:airline_right_sep = '◀'
+"let g:airline_symbols = {}
+"let g:airline_symbols.crypt = '🔒'
+"let g:airline_symbols.linenr = '␊'
+"let g:airline_symbols.linenr = '␤'
+"let g:airline_symbols.linenr = '¶'
+"let g:airline_symbols.maxlinenr = '☰'
+"let g:airline_symbols.maxlinenr = ''
+"let g:airline_symbols.branch = '⎇'
+"let g:airline_symbols.paste = 'ρ'
+"let g:airline_symbols.paste = 'Þ'
+"let g:airline_symbols.paste = '∥'
+"let g:airline_symbols.spell = 'Ꞩ'
+"let g:airline_symbols.notexists = '∄'
+"let g:airline_symbols.whitespace = 'Ξ'
+
+"let g:airline#extensions#tabline#left_sep = ' '
+"let g:airline#extensions#tabline#left_alt_sep = '|'
