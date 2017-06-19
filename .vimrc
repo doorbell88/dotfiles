@@ -66,15 +66,17 @@ map Y y$
 " number > relativenumber > nonumber > number
 function! NumberToggle()
     if(&number == 1)
+        set nonumber
         set relativenumber
     elseif(&relativenumber == 1)
         set nonumber
         set norelativenumber
     else
+        set norelativenumber
         set number
     endif
 endfunc
-nnoremap <C-n> :call NumberToggle()<cr>
+nnoremap <silent> <C-n> :call NumberToggle()<cr>
 
 "--------------------------------- Solarized -----------------------------------
 " get solarized 256 colors to work while in tmux
