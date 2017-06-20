@@ -47,6 +47,9 @@ set statusline+=%F      " show filepath/filename
 set history=50          " keep 50 lines of command line history
 set showcmd             " display incomplete commands
 
+set timeoutlen=1000     " mapping delays
+set ttimeoutlen=0       " key code delays (delay after <ESC> key)
+
 let g:pyindent_open_paren = '&sw'
 let g:pyindent_nested_paren = '&sw'
 let g:pyindent_continue = '&sw'
