@@ -63,7 +63,7 @@ let g:pyindent_continue = '&sw'
 vnoremap // y/<C-R>"<CR>
 
 " Y to yank until end of line (instead of entire line)
-map Y y$
+noremap Y y$
 
 "toggle between absolute / relative line numbers
 " number > relativenumber > nonumber > number
