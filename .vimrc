@@ -70,7 +70,7 @@ vnoremap ,c             ^o^<C-v>I#<ESC>
 "      [ ,u ]           Uncomment visual selection (Visual, or Visual Line)
 vnoremap ,u             :norm ^x<CR>
 
-"      [ ,(surround) ]  Surround the highlighted text with quotes, parens, etc.
+"      [ ,(*) ]         Surround the highlighted text with quotes, parens, etc.
 vnoremap ,"             c""<ESC>P
 vnoremap ,'             c''<ESC>P
 vnoremap ,(             c()<ESC>P
@@ -81,6 +81,18 @@ vnoremap ,[             c[]<ESC>P
 vnoremap ,]             c[]<ESC>P
 vnoremap ,<             c<><ESC>P
 vnoremap ,>             c<><ESC>P
+
+"      [ ,(*) ]         Surround the word with quotes, parens, etc.
+nnoremap ,"             viwc""<ESC>P
+nnoremap ,'             viwc''<ESC>P
+nnoremap ,(             viwc()<ESC>P
+nnoremap ,)             viwc()<ESC>P
+nnoremap ,{             viwc{}<ESC>P
+nnoremap ,}             viwc{}<ESC>P
+nnoremap ,[             viwc[]<ESC>P
+nnoremap ,]             viwc[]<ESC>P
+nnoremap ,<             viwc<><ESC>P
+nnoremap ,>             viwc<><ESC>P
 
 "------------------------------- Abbreviations ---------------------------------
 :ab #w ################################################################################
