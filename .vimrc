@@ -1,3 +1,4 @@
+"================================== Plugins ====================================
 "-------------------------------- Vundle Setup ---------------------------------
 " Use Vim settings, rather than Vi settings (much better!).
 " This must be first, because it changes other options as a side effect.
@@ -50,24 +51,36 @@ set showcmd             " display incomplete commands
 set timeoutlen=1000     " mapping delays
 set ttimeoutlen=0       " key code delays (delay after <ESC> key)
 
+" indentation
 let g:pyindent_open_paren = '&sw'
 let g:pyindent_nested_paren = '&sw'
 let g:pyindent_continue = '&sw'
 
 
 "-------------------------------- Key Mappings ---------------------------------
-"      [ // ]           earch for what is highlighted in VISUAL MODE
+"      [ // ]           Search for what is highlighted in VISUAL MODE
 vnoremap //             y/<C-R>"<CR>
 
-"      [ Y ]            yank until end of line (instead of entire line)
+"      [ Y ]            Yank until end of line (instead of entire line)
 nnoremap Y              y$
 
-"      [ ,c ]           comment visual selection (Visual, or Visual Line)
+"      [ ,c ]           Comment visual selection (Visual, or Visual Line)
 vnoremap ,c             ^o^<C-v>I#<ESC>
 
-"      [ ,u ]           uncomment visual selection (Visual, or Visual Line)
+"      [ ,u ]           Uncomment visual selection (Visual, or Visual Line)
 vnoremap ,u             :norm ^x<CR>
 
+"      [ ,(surround) ]  Surround the highlighted text with quotes, parens, etc.
+vnoremap ,"             c""<ESC>P
+vnoremap ,'             c''<ESC>P
+vnoremap ,(             c()<ESC>P
+vnoremap ,)             c()<ESC>P
+vnoremap ,{             c{}<ESC>P
+vnoremap ,}             c{}<ESC>P
+vnoremap ,[             c[]<ESC>P
+vnoremap ,]             c[]<ESC>P
+vnoremap ,<             c<><ESC>P
+vnoremap ,>             c<><ESC>P
 
 "------------------------------- Abbreviations ---------------------------------
 :ab #w ################################################################################
@@ -77,7 +90,7 @@ vnoremap ,u             :norm ^x<CR>
 
 "--------------------------------- Functions -----------------------------------
 "toggle between absolute / relative line numbers
-" number > relativenumber > nonumber > number
+" (number) > (relativenumber) > (nonumber) > (number)
 function! NumberToggle()
     if(&number == 1)
         set nonumber
@@ -93,14 +106,15 @@ endfunc
 nnoremap <silent> <C-n> :call NumberToggle()<cr>
 
 
+"================================ ColorScheme ==================================
 "--------------------------------- Solarized -----------------------------------
-" get solarized 256 colors to work while in tmux
+" get  256 colors to work while in tmux
 if $TERM == 'screen'
     set t_Co=256
 endif
 
-syntax enable     " Use syntax highlighting
-colorscheme solarized
+syntax enable               " Use syntax highlighting
+colorscheme solarized       " Set solarized as the color scheme
 
 if !has('gui_running')
     " Compatibility for Terminal
@@ -118,12 +132,17 @@ set background=dark
 let g:solarized_visibility = "high"
 let g:solarized_contrast = "high"
 
+"........................ colors ..........................
 " change Visual Mode highlighting colors
 hi Visual ctermbg=Yellow
 hi Visual ctermfg=DarkGray
-"-------------------------------------------------------------------------------
+
+" change Search Mode highlighting colors
+hi Search cterm=None ctermfg=Black ctermbg=LightGreen
+"..........................................................
 
 
+"----------------------------- Borrowed Features -------------------------------
 if has("vms")
   set nobackup      " do not keep a backup file, use versions instead
 else
