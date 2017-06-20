@@ -62,12 +62,11 @@ vnoremap //             y/<C-R>"<CR>
 "      [ Y ]            yank until end of line (instead of entire line)
 nnoremap Y              y$
 
-"      [ \+/ ]          comment visual selection (Visual, or Visual Line)
-vnoremap <leader>/      0o0<C-v>I#<ESC>
+"      [ ,c ]           comment visual selection (Visual, or Visual Line)
+vnoremap ,c             ^o^<C-v>I#<ESC>
 
-"      [ \+shift+/ ]    uncomment visual selection (Visual, or Visual Line)
-vnoremap <leader>?      0o0<C-v>x
-
+"      [ ,u ]           uncomment visual selection (Visual, or Visual Line)
+vnoremap ,u             :norm ^x<CR>
 
 "------------------------------- Abbreviations ---------------------------------
 :ab #w ################################################################################
