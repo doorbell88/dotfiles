@@ -107,14 +107,14 @@ nnoremap <silent> <C-n> :call NumberToggle()<cr>
 
 
 "================================ ColorScheme ==================================
-"--------------------------------- Solarized -----------------------------------
-" get  256 colors to work while in tmux
-if $TERM == 'screen'
+if $TERM == 'screen'    " get  256 colors to work while in tmux
     set t_Co=256
 endif
 
-syntax enable               " Use syntax highlighting
-colorscheme solarized       " Set solarized as the color scheme
+syntax enable           " Use syntax highlighting
+
+"........................ Solarized ...........................
+colorscheme solarized
 
 if !has('gui_running')
     " Compatibility for Terminal
@@ -132,14 +132,14 @@ set background=dark
 let g:solarized_visibility = "high"
 let g:solarized_contrast = "high"
 
-"........................ colors ..........................
+".......................... colors ............................
 " change Visual Mode highlighting colors
 hi Visual ctermbg=Yellow
 hi Visual ctermfg=DarkGray
 
 " change Search Mode highlighting colors
 hi Search cterm=None ctermfg=Black ctermbg=LightGreen
-"..........................................................
+"..............................................................
 
 
 "----------------------------- Borrowed Features -------------------------------
