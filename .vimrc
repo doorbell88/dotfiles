@@ -54,17 +54,28 @@ let g:pyindent_open_paren = '&sw'
 let g:pyindent_nested_paren = '&sw'
 let g:pyindent_continue = '&sw'
 
-"Abbreviations
+
+"-------------------------------- Key Mappings ---------------------------------
+"      [ // ]           earch for what is highlighted in VISUAL MODE
+vnoremap //             y/<C-R>"<CR>
+
+"      [ Y ]            yank until end of line (instead of entire line)
+nnoremap Y              y$
+
+"      [ \+/ ]          comment visual selection (Visual, or Visual Line)
+vnoremap <leader>/      0o0<C-v>I#<ESC>
+
+"      [ \+shift+/ ]    uncomment visual selection (Visual, or Visual Line)
+vnoremap <leader>?      0o0<C-v>x
+
+
+"------------------------------- Abbreviations ---------------------------------
 :ab #w ################################################################################
 :ab #- #------------------------------------------------------------------------------#
 :ab #_ #______________________________________________________________________________#
 
-" // to search for what is highlighted in VISUAL MODE
-vnoremap // y/<C-R>"<CR>
 
-" Y to yank until end of line (instead of entire line)
-noremap Y y$
-
+"--------------------------------- Functions -----------------------------------
 "toggle between absolute / relative line numbers
 " number > relativenumber > nonumber > number
 function! NumberToggle()
@@ -80,6 +91,7 @@ function! NumberToggle()
     endif
 endfunc
 nnoremap <silent> <C-n> :call NumberToggle()<cr>
+
 
 "--------------------------------- Solarized -----------------------------------
 " get solarized 256 colors to work while in tmux
