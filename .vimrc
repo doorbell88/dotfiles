@@ -49,40 +49,40 @@ vnoremap ,c             ^o^<C-v>I#<ESC>
 vnoremap ,u             :norm ^x<CR>
 
 "      [ * ]            Surround the highlighted text with quotes, parens, etc.
-vnoremap "              c""<ESC>P
-vnoremap '              c''<ESC>P
-vnoremap (              c()<ESC>P
-vnoremap )              c()<ESC>P
-vnoremap {              c{}<ESC>P
-vnoremap }              c{}<ESC>P
-vnoremap [              c[]<ESC>P
-vnoremap ]              c[]<ESC>P
-vnoremap <              c<><ESC>P
-vnoremap >              c<><ESC>P
+vnoremap ,"             c""<ESC>P
+vnoremap ,'             c''<ESC>P
+vnoremap ,(             c()<ESC>P
+vnoremap ,)             c()<ESC>P
+vnoremap ,{             c{}<ESC>P
+vnoremap ,}             c{}<ESC>P
+vnoremap ,[             c[]<ESC>P
+vnoremap ,]             c[]<ESC>P
+vnoremap ,<             c<><ESC>P
+vnoremap ,>             c<><ESC>P
 
 "      [ * ]            Surround the word with quotes, parens, etc.
-nnoremap "              viwc""<ESC>P
-nnoremap '              viwc''<ESC>P
-nnoremap (              viwc()<ESC>P
-nnoremap )              viwc()<ESC>P
-nnoremap {              viwc{}<ESC>P
-nnoremap }              viwc{}<ESC>P
-nnoremap [              viwc[]<ESC>P
-nnoremap ]              viwc[]<ESC>P
-nnoremap <              viwc<><ESC>P
-nnoremap >              viwc<><ESC>P
+nnoremap ,"             viwc""<ESC>P
+nnoremap ,'             viwc''<ESC>P
+nnoremap ,(             viwc()<ESC>P
+nnoremap ,)             viwc()<ESC>P
+nnoremap ,{             viwc{}<ESC>P
+nnoremap ,}             viwc{}<ESC>P
+nnoremap ,[             viwc[]<ESC>P
+nnoremap ,]             viwc[]<ESC>P
+nnoremap ,<             viwc<><ESC>P
+nnoremap ,>             viwc<><ESC>P
 
 "      [ ,* ]           Remove surrounding quotes, parens, etc.
-nnoremap ,"             F"xf"x
-nnoremap ,'             F'xf'x
-nnoremap ,(             F(%x<C-o>x
-nnoremap ,)             f)%%x<C-o>x
-nnoremap ,{             F{%x<C-o>x
-nnoremap ,}             f}%%x<C-o>x
-nnoremap ,[             F[%x<C-o>x
-nnoremap ,]             f]%%x<C-o>x
-nnoremap ,<             F<xf>x
-nnoremap ,>             f>xF<x
+nnoremap ,r"            F"xf"x
+nnoremap ,r'            F'xf'x
+nnoremap ,r(            F(%x<C-o>x
+nnoremap ,r)            f)%%x<C-o>x
+nnoremap ,r{            F{%x<C-o>x
+nnoremap ,r}            f}%%x<C-o>x
+nnoremap ,r[            F[%x<C-o>x
+nnoremap ,r]            f]%%x<C-o>x
+nnoremap ,r<            F<xf>x
+nnoremap ,r>            f>xF<x
 
 
 "------------------------------- Abbreviations ---------------------------------
