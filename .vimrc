@@ -1,34 +1,9 @@
-"================================== Plugins ====================================
-"-------------------------------- Vundle Setup ---------------------------------
+"----------------------------- Basic Vim Settings ------------------------------
 " Use Vim settings, rather than Vi settings (much better!).
 " This must be first, because it changes other options as a side effect.
 set nocompatible
-filetype off
-set rtp+=~/.vim/bundle/Vundle.vim/
-call vundle#rc()
 
-" This is the Vundle package, which can be found on GitHub.
-" For GitHub repos, you specify plugins using the 'user/repository' format
-Plugin 'gmarik/vundle'
-
-" We could also add repositories with a '.git' extension
-Plugin 'scrooloose/nerdtree.git'
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-
-" To get plugins from Vim Scripts, you can reference the plugin
-" by name as it appears on the site
-Plugin 'Tagbar'
-
-" Now we can turn our filetype functionality back on
-filetype plugin indent on
-
-
-"-------------------------------------------------------------------------------
 set number              " Show line numbers
-
-" allow backspacing over everything in insert mode
-set backspace=indent,eol,start
 
 set foldmethod=indent   " fold by indent
 set foldignore=         " fold comments along with everything else
@@ -51,6 +26,9 @@ set showcmd             " display incomplete commands
 set timeoutlen=1000     " mapping delays
 set ttimeoutlen=0       " key code delays (delay after <ESC> key)
 
+" allow backspacing over everything in insert mode
+set backspace=indent,eol,start
+
 " indentation
 let g:pyindent_open_paren = '&sw'
 let g:pyindent_nested_paren = '&sw'
@@ -58,11 +36,11 @@ let g:pyindent_continue = '&sw'
 
 
 "-------------------------------- Key Mappings ---------------------------------
-"      [ // ]           Search for what is highlighted in VISUAL MODE
-vnoremap //             y/<C-R>"<CR>
-
 "      [ Y ]            Yank until end of line (instead of entire line)
 nnoremap Y              y$
+
+"      [ // ]           Search for what is highlighted in VISUAL MODE
+vnoremap //             y/<C-R>"<CR>
 
 "      [ ,c ]           Comment visual selection (Visual, or Visual Line)
 vnoremap ,c             ^o^<C-v>I#<ESC>
@@ -70,34 +48,47 @@ vnoremap ,c             ^o^<C-v>I#<ESC>
 "      [ ,u ]           Uncomment visual selection (Visual, or Visual Line)
 vnoremap ,u             :norm ^x<CR>
 
-"      [ ,(*) ]         Surround the highlighted text with quotes, parens, etc.
-vnoremap ,"             c""<ESC>P
-vnoremap ,'             c''<ESC>P
-vnoremap ,(             c()<ESC>P
-vnoremap ,)             c()<ESC>P
-vnoremap ,{             c{}<ESC>P
-vnoremap ,}             c{}<ESC>P
-vnoremap ,[             c[]<ESC>P
-vnoremap ,]             c[]<ESC>P
-vnoremap ,<             c<><ESC>P
-vnoremap ,>             c<><ESC>P
+"      [ * ]            Surround the highlighted text with quotes, parens, etc.
+vnoremap "              c""<ESC>P
+vnoremap '              c''<ESC>P
+vnoremap (              c()<ESC>P
+vnoremap )              c()<ESC>P
+vnoremap {              c{}<ESC>P
+vnoremap }              c{}<ESC>P
+vnoremap [              c[]<ESC>P
+vnoremap ]              c[]<ESC>P
+vnoremap <              c<><ESC>P
+vnoremap >              c<><ESC>P
 
-"      [ ,(*) ]         Surround the word with quotes, parens, etc.
-nnoremap ,"             viwc""<ESC>P
-nnoremap ,'             viwc''<ESC>P
-nnoremap ,(             viwc()<ESC>P
-nnoremap ,)             viwc()<ESC>P
-nnoremap ,{             viwc{}<ESC>P
-nnoremap ,}             viwc{}<ESC>P
-nnoremap ,[             viwc[]<ESC>P
-nnoremap ,]             viwc[]<ESC>P
-nnoremap ,<             viwc<><ESC>P
-nnoremap ,>             viwc<><ESC>P
+"      [ * ]            Surround the word with quotes, parens, etc.
+nnoremap "              viwc""<ESC>P
+nnoremap '              viwc''<ESC>P
+nnoremap (              viwc()<ESC>P
+nnoremap )              viwc()<ESC>P
+nnoremap {              viwc{}<ESC>P
+nnoremap }              viwc{}<ESC>P
+nnoremap [              viwc[]<ESC>P
+nnoremap ]              viwc[]<ESC>P
+nnoremap <              viwc<><ESC>P
+nnoremap >              viwc<><ESC>P
+
+"      [ ,* ]           Remove surrounding quotes, parens, etc.
+nnoremap ,"             F"xf"x
+nnoremap ,'             F'xf'x
+nnoremap ,(             F(%x<C-o>x
+nnoremap ,)             f)%%x<C-o>x
+nnoremap ,{             F{%x<C-o>x
+nnoremap ,}             f}%%x<C-o>x
+nnoremap ,[             F[%x<C-o>x
+nnoremap ,]             f]%%x<C-o>x
+nnoremap ,<             F<xf>x
+nnoremap ,>             f>xF<x
+
 
 "------------------------------- Abbreviations ---------------------------------
 :ab #w ################################################################################
-:ab #- #------------------------------------------------------------------------------#
-:ab #_ #______________________________________________________________________________#
+:ab #- #-------------------------------------------------------------------------------
+:ab #_ #_______________________________________________________________________________
 
 
 "--------------------------------- Functions -----------------------------------
@@ -196,6 +187,30 @@ endif
 "===============================================================================
 "                                   PLUGINS
 "===============================================================================
+"//////////////////////////////// Vundle Setup \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+filetype off
+set rtp+=~/.vim/bundle/Vundle.vim/
+call vundle#rc()
+
+".....................................................................
+" This is the Vundle package, which can be found on GitHub.
+" For GitHub repos, you specify plugins using the 'user/repository' format
+Plugin 'gmarik/vundle'
+
+" We could also add repositories with a '.git' extension
+Plugin 'scrooloose/nerdtree.git'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+
+" To get plugins from Vim Scripts, you can reference the plugin
+" by name as it appears on the site
+Plugin 'Tagbar'
+".....................................................................
+
+" Now we can turn our filetype functionality back on
+filetype plugin indent on
+"\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\////////////////////////////////////////
+
 
 "----------------------------------- Tagbar ------------------------------------
 let g:tagbar_ctags_bin='/usr/local/bin/ctags'   " Proper Ctags locations
