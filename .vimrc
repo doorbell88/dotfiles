@@ -36,19 +36,21 @@ let g:pyindent_continue = '&sw'
 
 
 "-------------------------------- Key Mappings ---------------------------------
-"      [ Y ]            Yank until end of line (instead of entire line)
+"                       Yank until end of line (instead of entire line)
 nnoremap Y              y$
 
-"      [ // ]           Search for what is highlighted in VISUAL MODE
+"                       Search for what is highlighted in VISUAL MODE
 vnoremap //             y/<C-R>"<CR>
 
-"      [ ,c ]           Comment visual selection (Visual, or Visual Line)
+"                       Comment visual selection (Visual, or Visual Line)
 vnoremap ,c             ^o^<C-v>I#<ESC>
+nnoremap ,c             v^o^<C-v>I#<ESC>
 
-"      [ ,u ]           Uncomment visual selection (Visual, or Visual Line)
+"                       Uncomment visual selection (Visual, or Visual Line)
 vnoremap ,u             :norm ^x<CR>
+nnoremap ,u             :norm ^x<CR>
 
-"      [ * ]            Surround the highlighted text with quotes, parens, etc.
+"                       Surround the highlighted text with quotes, parens, etc.
 vnoremap ,"             c""<ESC>P
 vnoremap ,'             c''<ESC>P
 vnoremap ,(             c()<ESC>P
@@ -60,7 +62,7 @@ vnoremap ,]             c[]<ESC>P
 vnoremap ,<             c<><ESC>P
 vnoremap ,>             c<><ESC>P
 
-"      [ * ]            Surround the word with quotes, parens, etc.
+"                       Surround the word with quotes, parens, etc.
 nnoremap ,"             viwc""<ESC>P
 nnoremap ,'             viwc''<ESC>P
 nnoremap ,(             viwc()<ESC>P
@@ -72,7 +74,7 @@ nnoremap ,]             viwc[]<ESC>P
 nnoremap ,<             viwc<><ESC>P
 nnoremap ,>             viwc<><ESC>P
 
-"      [ ,* ]           Remove surrounding quotes, parens, etc.
+"                       Remove surrounding quotes, parens, etc.
 nnoremap ,r"            F"xf"x
 nnoremap ,r'            F'xf'x
 nnoremap ,r(            F(%x<C-o>x
@@ -216,11 +218,14 @@ filetype plugin indent on
 let g:tagbar_ctags_bin='/usr/local/bin/ctags'   " Proper Ctags locations
 let g:tagbar_width = 35                         " Default is 40, seems too wide
 let g:tagbar_sort  = 0                          " Do not alpha-sort names
-noremap <silent> <Leader>t :TagbarToggle<CR>    " Display panel with \+t
+"
+"                \t                             Display panel with \+t
+noremap <silent> <Leader>t                      :TagbarToggle<CR>
 
 
 "---------------------------------- NERDTree -----------------------------------
-noremap <silent> <Leader>n :NERDTreeToggle<CR>  " Display NERDTree panel: \+n
+"                \n                             Display NERDTree panel: \+n
+noremap <silent> <Leader>n                      :NERDTreeToggle<CR>
 
 " automatically close NERDTree when quitting vim (if it's the only buffer)
 autocmd bufenter * if (winnr("$") == 1
@@ -235,9 +240,14 @@ let g:airline#extensions#tabline#enabled = 1    " Display all buffers
 let g:airline#extensions#tabline#fnamemod =':t' " Display just the filename
 
 " Tab navigation
-nnoremap <leader>[ :bprevious<CR>               " Previous buffer
-nnoremap <leader>] :bnext<CR>                   " Next buffer
-nnoremap <leader>bq :bn <BAR> bd #<CR>          " Close current buffer (tab)
+"        \[                                     Previous buffer
+nnoremap <leader>[                              :bprevious<CR>
+
+"        \]                                     Next buffer
+nnoremap <leader>]                              :bnext<CR>
+
+"        \bq                                    Close current buffer (tab)
+nnoremap <leader>bq                             :bn<BAR>bd#<CR>
 
 " ASCII vs unicode (symbols)
 set encoding=utf-8                              " for symbols
