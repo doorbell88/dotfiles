@@ -30,9 +30,9 @@ set ttimeoutlen=0       " key code delays (delay after <ESC> key)
 set backspace=indent,eol,start
 
 " indentation
-let g:pyindent_open_paren = '&sw'
+let g:pyindent_open_paren   = '&sw'
 let g:pyindent_nested_paren = '&sw'
-let g:pyindent_continue = '&sw'
+let g:pyindent_continue     = '&sw'
 
 
 "-------------------------------- Key Mappings ---------------------------------
@@ -118,33 +118,45 @@ endif
 
 syntax enable           " Use syntax highlighting
 
-"........................ Solarized ...........................
-colorscheme solarized
+"______________________________________________________________
+"........................ solarized ...........................
+    "colorscheme solarized
 
-if !has('gui_running')
-    " Compatibility for Terminal
-    let g:solarized_termtrans=1
-    if (&t_Co >= 256 || $TERM == 'xterm-256color')
-        " Do nothing, it handles itself.
-        let g:solarized_termcolors=256
-    else
-        " Make Solarized use 16 colors for Terminal support
-        let g:solarized_termcolors=16
-    endif
-endif
+    "if !has('gui_running')
+    "    " Compatibility for Terminal
+    "    let g:solarized_termtrans=1
+    "    if (&t_Co >= 256 || $TERM == 'xterm-256color')
+    "        " Do nothing, it handles itself.
+    "        let g:solarized_termcolors=256
+    "    else
+    "        " Make Solarized use 16 colors for Terminal support
+    "        let g:solarized_termcolors=16
+    "    endif
+    "endif
 
-set background=dark
-let g:solarized_visibility = "high"
-let g:solarized_contrast = "high"
+    "set background=dark
+    "let g:solarized_visibility = "high"
+    "let g:solarized_contrast = "high"
 
-".......................... colors ............................
-" change Visual Mode highlighting colors
-hi Visual ctermbg=Yellow
-hi Visual ctermfg=DarkGray
+    "".......................... colors ............................
+    "" change Visual Mode highlighting colors
+    "hi Visual ctermbg=Yellow ctermfg=DarkGray
+    "" change Search Mode highlighting colors
+    "hi Search cterm=None ctermfg=Black ctermbg=LightGreen
+    "" change code folding so folded text is not bold or underline
+    "hi Folded cterm=None
 
-" change Search Mode highlighting colors
-hi Search cterm=None ctermfg=Black ctermbg=LightGreen
-"..............................................................
+"______________________________________________________________
+"..................... space-vim-dark .........................
+    colorscheme space-vim-dark
+
+    ".......................... colors ............................
+    " change background to black
+    hi Normal ctermbg=None
+    " change Search Mode highlighting colors
+    hi Search cterm=None ctermfg=Black ctermbg=LightGreen
+    " change code folding so folded text is not bold
+    hi Folded cterm=None
 
 
 "----------------------------- Borrowed Features -------------------------------
@@ -156,11 +168,6 @@ endif
 
 " Only do this part when compiled with support for autocommands.
 if has("autocmd")
-    " Enable file type detection.
-    " Use the default filetype settings, so that mail gets 'tw' set to 72,
-    " 'cindent' is on in C files, etc.
-    " Also load indent files, to automatically do language-dependent indenting.
-    filetype plugin indent on
     " Put these in an autocmd group, so that we can delete them easily.
     augroup vimrcEx
     au!
@@ -175,7 +182,7 @@ if has("autocmd")
     augroup END
 else
     set autoindent        " always set autoindenting on
-endif " has("autocmd")
+endif
 
 " Convenient command to see the difference between the current buffer and the
 " file it was loaded from, thus the changes you made.
