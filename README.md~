@@ -7,9 +7,6 @@ install ctags
     sudo apt install exuberant-ctags
     ln -s /usr/bin/ctags /usr/local/bin/ctags
 
-#-------------------------------------------------------------------------------
-(If repo is cloned, this should not be necessary anymore)...
-
 install vundle
 
     git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
