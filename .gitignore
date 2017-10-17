@@ -3,3 +3,10 @@
 *.swp
 *.swo
 *~
+
+
+# Vim Plugins #
+###############
+.vim/bundle/Tagbar
+.vim/bundle/Vundle.vim
+.vim/bundle/vundle
