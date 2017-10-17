@@ -12,6 +12,7 @@
 # get location of dotfiles repo
 DOTFILES_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 THIS_SCRIPT_NAME="$(basename "$0")"
+SETUP_VIM_AND_TMUX_SH="set_up_vim_and_tmux.sh" 
 
 #--------------------------------- FUNCTIONS -----------------------------------
 create_backup() {
@@ -31,7 +32,7 @@ create_link() {
     LINK_NAME="$HOME/$filename"
 
     # create symbolic link
-    ln -s $TARGET $LINK_NAME
+    ln -sv $TARGET $LINK_NAME
 }
 
 remove_backups() {
@@ -56,6 +57,7 @@ files=$(for file in $(ls -a); do echo $file ; done \
             | grep -v README \
             | grep -v git \
             | grep -v "$THIS_SCRIPT_NAME" \
+            | grep -v "$SETUP_VIM_AND_TMUX_SH" \
        )
 
 
