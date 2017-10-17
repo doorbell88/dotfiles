@@ -98,6 +98,15 @@ nnoremap ,r]        f]%%x<C-o>x
 nnoremap ,r<        F<xf>x
 nnoremap ,r>        f>xF<x
 
+"                   Type closing quote/paren/etc after typing first one
+inoremap "          ""<ESC>i
+inoremap '          ''<ESC>i
+inoremap `          ``<ESC>i
+inoremap (          ()<ESC>i
+inoremap [          []<ESC>i
+inoremap {          {}<ESC>i
+inoremap <          <><ESC>i
+
 "                   Create a title
 nnoremap ,t         A <ESC>I <ESC>:ce<CR>O#<C-o>79a-<ESC>j^h<C-v>g_lygvkpjdd
 
