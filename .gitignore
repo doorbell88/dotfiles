@@ -5,6 +5,11 @@
 *~
 
 
+# Bash auto-generated files #
+#############################
+.bash_history
+
+
 # Vim Plugins #
 ###############
 .vim/bundle/Tagbar

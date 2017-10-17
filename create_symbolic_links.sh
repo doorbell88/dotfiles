@@ -60,6 +60,7 @@ files=$(for file in $(ls -a); do echo $file ; done \
             | grep -v .swo \
             | grep -v README \
             | grep -v git \
+            | grep -v history \
             | grep -v "$THIS_SCRIPT_NAME" \
             | grep -v "$SETUP_VIM_AND_TMUX_SH" \
        )
