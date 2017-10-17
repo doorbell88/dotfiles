@@ -1,5 +1,6 @@
 #------------------------------ DEFAULT COMMANDS -------------------------------
-alias ls='ls -G'
+# set ls to colorize output (checking for compatibility with Mac vs Linux)
+ls --color=auto &> /dev/null && alias ls='ls --color=auto'
 
 
 #----------------------------- FORMATTING ALIASES ------------------------------
