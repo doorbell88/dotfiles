@@ -15,8 +15,10 @@ if [ -z "$(which tmux)" ]; then
 fi
 
 # install ctags
-sudo apt install exuberant-ctags
-sudo ln -s /usr/bin/ctags /usr/local/bin/ctags
+if [ !-e "/usr/local/bin/ctags" ]; then
+    sudo apt install exuberant-ctags
+    sudo ln -s /usr/bin/ctags /usr/local/bin/ctags
+fi
 
 # install Vundle (for vim)
 git clone https://github.com/VundleVim/Vundle.vim.git $DOTFILES_DIR/.vim/bundle/Vundle.vim
