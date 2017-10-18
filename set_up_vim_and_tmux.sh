@@ -23,10 +23,9 @@ if [ ! -e /usr/local/bin/ctags ]; then
 fi
 
 # install Vundle (for vim)
+VUNDLE_GIT_REPO=https://github.com/VundleVim/Vundle.vim.git
 VUNDLE_DIR=$DOTFILES_DIR/.vim/bundle/Vundle.vim
-if [ -d $VUNDLE_DIR ] && [ -z "$(ls $VUNDLE_DIR)" ]; then
-    git clone https://github.com/VundleVim/Vundle.vim.git $VUNDLE_DIR
-fi
+git clone $VUNDLE_GIT_REPO $VUNDLE_DIR 2>/dev/null
 
 # install vim plugins automatically
 vim -c PluginInstall -c :q -c :q
