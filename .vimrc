@@ -39,9 +39,11 @@ set backspace=indent,eol,start
 "                   Yank until end of line (instead of entire line)
 nnoremap Y          y$
 
-"                   Insert line below (j) or above (k) without insert mode
+"                   Insert space below(j) above(k) left(j) right(l) w/o insert
 nnoremap <C-j>      o<ESC>
 nnoremap <C-k>      O<ESC>
+nnoremap <C-h>      i <ESC>
+nnoremap <C-l>      a <ESC>
 
 "                   Shift lines down (j) or up (k)
 vnoremap <C-j>      :m '>+1<CR>gv=gv
