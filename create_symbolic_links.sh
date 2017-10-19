@@ -160,8 +160,10 @@ tput sgr0
 read response
 
 #---------------------------------------
-if [ "$response" = "y"]; then
+if [ "$response" = "y" ]; then
     remove_backups
+    echo "Finished."
+    exit
 else
     echo
     echo "Would you like to clean up the backup files?"
@@ -171,9 +173,6 @@ else
     read response
     if [ "$response" = "y" ]; then
         clean_up_backups
+        echo "Finished."
     fi
 fi
-
-
-#-------------------------------------------------------------------------------
-echo "Finished."
