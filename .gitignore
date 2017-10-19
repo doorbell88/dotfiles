@@ -12,8 +12,4 @@
 
 # Vim Plugins #
 ###############
-Tagbar
-Vundle.vim
-nerdtree
-vim-airline
-vim-airline-themes
+.vim/bundle/
