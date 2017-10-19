@@ -14,6 +14,15 @@ THIS_SCRIPT_NAME="$(basename "$0")"
 SETUP_VIM_AND_TMUX_SH="set_up_vim_and_tmux.sh" 
 
 #--------------------------------- FUNCTIONS -----------------------------------
+section_title() {
+    title="$*"
+    tput sgr0
+    tput smul
+    echo
+    echo "$title"
+    tput rmul
+}
+
 create_backup() {
     filename="$1"
     if [ -e "$HOME/$filename" ]; then
@@ -54,14 +63,30 @@ clean_up_backups() {
             read resp
 
             case $resp in
-                d | D )     rm -v "$backup_file"
+                d | D )     echo -ne "  "
+                            tput setaf 1
+                            rm -v "$backup_file"
+                            tput sgr0
                             ;;
-                k | K )     echo "($backup_file kept as backup)"
+
+                k | K )     echo -ne "  "
+                            tput setaf 4
+                            echo "($backup_file kept as backup)"
+                            tput sgr0
                             ;;
-                r | R )     echo "Restoring backup file..."
+
+                r | R )     echo -ne "  "
+                            tput setaf 3
+                            echo "Restoring backup file..."
+                            echo -ne "  "
                             mv -v $backup_file ${HOME}/${filename}
+                            tput sgr0
                             ;;
-                * )         echo "Invalid response! ($backup_file kept as backup)"
+
+                * )         echo -ne "  --> "
+                            tput bold
+                            echo "Invalid response! ($backup_file kept as backup)"
+                            tput sgr0
             esac
         fi
     done
@@ -90,11 +115,7 @@ files=$(for file in $(ls -a); do echo $file ; done \
 #-------------------------------------------------------------------------------
 # display files that will be backed up and linked
 #---------------------------------------
-tput sgr0
-tput smul
-echo
-echo "files to be linked:"
-tput rmul
+section_title "files to be linked:"
 #---------------------------------------
 
 for file in $files; do
@@ -113,11 +134,7 @@ fi
 #-------------------------------------------------------------------------------
 # create backups
 #---------------------------------------
-tput sgr0
-tput smul
-echo
-echo "Creating backup files"
-tput rmul
+section_title "Creating backup files"
 tput setaf 4
 #---------------------------------------
 
@@ -132,11 +149,7 @@ done
 #-------------------------------------------------------------------------------
 # create symbolic links
 #---------------------------------------
-tput sgr0
-tput smul
-echo
-echo "Creating symbolic links"
-tput rmul
+section_title "Creating symbolic links"
 tput setaf 5
 #---------------------------------------
 
@@ -153,25 +166,36 @@ tput sgr0
 #-------------------------------------------------------------------------------
 # ask to remove backups
 #---------------------------------------
+# sleep, and discard anything the user types during this period
+while read -e -t 1; do : ; done
+
 echo
 tput setaf 1
-echo -ne "Would you like to remove the backup files (without confirmation)?  > "
+echo "Would you like to remove the backup files (without confirmation)?"
+echo -ne "  (y/n) > "
 tput sgr0
 read response
 
 #---------------------------------------
 if [ "$response" = "y" ]; then
+    section_title "Creating symbolic links"
+    tput setaf 1
+
     remove_backups
+
+    tput sgr0
+    echo
     echo "Finished."
     exit
 else
     echo
     echo "Would you like to clean up the backup files?"
-    echo "(you will be prompted to delete, keep, or restore each backup file)"
+    echo "You will be prompted to delete, keep, or restore each backup file"
     echo -ne "  (y/n) > "
 
     read response
     if [ "$response" = "y" ]; then
+        section_title "Cleaning up backup files"
         clean_up_backups
         echo "Finished."
     fi
