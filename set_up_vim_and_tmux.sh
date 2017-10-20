@@ -22,9 +22,19 @@ if [ ! -e /usr/local/bin/ctags ]; then
     sudo ln -s /usr/bin/ctags /usr/local/bin/ctags
 fi
 
-# install Vundle (for vim)
+# install Vundle (for managing vim plugins)
 VUNDLE_GIT_REPO=https://github.com/VundleVim/Vundle.vim.git
-VUNDLE_DIR=$DOTFILES_DIR/.vim/bundle/Vundle.vim
+
+# check if .vim/ exists in home directory
+#   --> If it does exist, it might be a real file, not a symlink, so Vundle
+#       will need to be installed there, not in the dotfiles/ directory
+if [ -e "$HOME/.vim" ]; then
+    VUNDLE_DIR=$HOME/.vim/bundle/Vundle.vim
+else
+    VUNDLE_DIR=$DOTFILES_DIR/.vim/bundle/Vundle.vim
+fi
+
+# clone Vundle
 git clone $VUNDLE_GIT_REPO $VUNDLE_DIR 2>/dev/null
 
 # install vim plugins automatically
