@@ -31,7 +31,7 @@ create_backup() {
     fi
 }
 
-create_link() {
+create_symbolic_link() {
     filename="$1"
 
     # define symbolic link arguments
@@ -42,7 +42,46 @@ create_link() {
     ln -sv $TARGET $LINK_NAME
 }
 
-remove_backups(){
+create_copy() {
+    filename="$1"
+
+    # define cp arguments
+    ORIGINAL="$DOTFILES_DIR/$filename"
+    COPY="$HOME/$filename"
+
+    # check if the file is a symbolic link
+    if [ -L "$COPY" ]; then
+        # read symbolic link
+        SYMLINK="$(readlink -f $COPY)"
+        # replace symbolic link with "hard" copy
+        echo "copying ... $filename"
+        echo "Removing existing symlink to $SYMLINK"
+        cp -vr --remove-destination "$(readlink $COPY)" $COPY
+    else
+        # create copy
+        cp -vr $ORIGINAL $COPY
+    fi
+}
+
+link_files() {
+    for file in $files; do
+        if [ -n "$file" ]; then
+            # create symbolic link
+            create_symbolic_link "$file"
+        fi
+    done
+}
+
+copy_files() {
+    for file in $files; do
+        if [ -n "$file" ]; then
+            # create local copy
+            create_copy "$file"
+        fi
+    done
+}
+
+remove_backups() {
     for filename in $files; do
         backup_file="${HOME}/${filename}-bak"
         if [ -e "$backup_file" ]; then
@@ -117,7 +156,6 @@ files=$(for file in $(ls -a); do echo $file ; done \
 #---------------------------------------
 section_title "files to be linked:"
 #---------------------------------------
-
 for file in $files; do
     echo "  $file"
 done
@@ -137,7 +175,6 @@ fi
 section_title "Creating backup files"
 tput setaf 4
 #---------------------------------------
-
 for file in $files; do
     if [ -n "$file" ]; then
         # create backup file
@@ -145,20 +182,30 @@ for file in $files; do
     fi
 done
 
+echo
+tput sgr0
+
 
 #-------------------------------------------------------------------------------
-# create symbolic links
+# create local versions
 #---------------------------------------
-section_title "Creating symbolic links"
-tput setaf 5
-#---------------------------------------
+# ask whether to copy over or create symbolic link
+echo -ne "Copy dotfiles over, or create symbolic link? (c/l)  > "
+read response
 
-for file in $files; do
-    if [ -n "$file" ]; then
-        # create symbolic link
-        create_link "$file"
-    fi
-done
+if [ "$response" = c ]; then
+    section_title "Creating local copies"
+    tput setaf 5
+    copy_files
+elif [ "$response" = l ]; then
+    section_title "Creating symbolic links"
+    tput setaf 5
+    link_files
+else
+    echo "Invalid response."
+    echo "Exiting."
+    exit 1
+fi
 
 tput sgr0
 
@@ -175,6 +222,7 @@ echo "Would you like to remove the backup files (without confirmation)?"
 echo -ne "  (y/n) > "
 tput sgr0
 read response
+
 
 #---------------------------------------
 if [ "$response" = "y" ]; then
