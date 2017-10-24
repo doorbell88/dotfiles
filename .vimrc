@@ -34,6 +34,9 @@ set backspace=indent,eol,start
 "let g:pyindent_nested_paren = '&sw'
 "let g:pyindent_continue     = '&sw'
 
+" switch buffers without having to save
+set hidden
+set switchbuf=useopen,usetab
 
 "-------------------------------- Key Mappings ---------------------------------
 "                   Yank until end of line (instead of entire line)
