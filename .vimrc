@@ -104,13 +104,19 @@ nnoremap ,r<        F<xf>x
 nnoremap ,r>        f>xF<x
 
 "                   Type closing quote/paren/etc after typing first one
-inoremap "          ""<ESC>i
-inoremap '          ''<ESC>i
-inoremap `          ``<ESC>i
-inoremap (          ()<ESC>i
-inoremap [          []<ESC>i
-inoremap {          {}<ESC>i
-inoremap <          <><ESC>i
+inoremap ""         ""<Left>
+inoremap ''         ''<Left>
+inoremap ``         ``<Left>
+inoremap ()         ()<Left>
+inoremap []         []<Left>
+inoremap {}         {}<Left>
+inoremap <>         <><Left>
+
+"                   Move left/right/down/up without leaving insert mode
+inoremap <C-h>      <Left>
+inoremap <C-l>      <Right>
+inoremap <C-j>      <Down>
+inoremap <C-k>      <Up>
 
 "                   Create a title
 nnoremap ,t         A <ESC>I <ESC>:ce<CR>O#<C-o>79a-<ESC>j^h<C-v>g_lygvkpjdd
