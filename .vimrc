@@ -42,20 +42,6 @@ set switchbuf=useopen,usetab
 "                   Yank until end of line (instead of entire line)
 nnoremap Y          y$
 
-"                   Insert space below(j) above(k) left(j) right(l) w/o insert
-nnoremap <C-j>      o<ESC>
-nnoremap <C-k>      O<ESC>
-nnoremap <C-h>      i <ESC>
-nnoremap <C-l>      a <ESC>
-
-"                   Shift lines down (j) or up (k)
-vnoremap <C-j>      :m '>+1<CR>gv=gv
-vnoremap <C-k>      :m '<-2<CR>gv=gv
-"nnoremap <C-j>      :m .+1<CR>==
-"nnoremap <C-k>      :m .-2<CR>==
-inoremap <C-j>      <ESC>:m .+1<CR>==gi
-inoremap <C-k>      <ESC>:m .-2<CR>==gi
-
 "                   Search for what is highlighted in VISUAL MODE
 vnoremap //         y/<C-R>"<CR>
 
@@ -66,6 +52,20 @@ nnoremap ,c         v^o^<C-v>I#<ESC>
 "                   Uncomment visual selection (Visual, or Visual Line)
 vnoremap ,u         :norm ^x<CR>
 nnoremap ,u         :norm ^x<CR>
+
+"                   Insert space below(j) above(k) left(j) right(l) w/o insert
+"nnoremap <C-j>      o<ESC>
+"nnoremap <C-k>      O<ESC>
+nnoremap <C-h>      i <ESC>
+nnoremap <C-l>      a <ESC>
+
+"                   Shift lines down (j) or up (k)
+vnoremap <C-j>      :m '>+1<CR>gv=gv
+vnoremap <C-k>      :m '<-2<CR>gv=gv
+"nnoremap <C-j>      :m .+1<CR>==
+"nnoremap <C-k>      :m .-2<CR>==
+inoremap <C-j>      <ESC>:m .+1<CR>==gi
+inoremap <C-k>      <ESC>:m .-2<CR>==gi
 
 "                   Surround the highlighted text with quotes, parens, etc.
 vnoremap ,"         c""<ESC>P
@@ -104,13 +104,13 @@ nnoremap ,r<        F<xf>x
 nnoremap ,r>        f>xF<x
 
 "                   Type closing quote/paren/etc after typing first one
-inoremap ""         ""<Left>
-inoremap ''         ''<Left>
-inoremap ``         ``<Left>
-inoremap ()         ()<Left>
-inoremap []         []<Left>
-inoremap {}         {}<Left>
-inoremap <>         <><Left>
+"inoremap ""         ""<Left>
+"inoremap ''         ''<Left>
+"inoremap ``         ``<Left>
+"inoremap ()         ()<Left>
+"inoremap []         []<Left>
+"inoremap {}         {}<Left>
+"inoremap <>         <><Left>
 
 "                   Move left/right/down/up without leaving insert mode
 inoremap <C-h>      <Left>
@@ -118,12 +118,12 @@ inoremap <C-l>      <Right>
 inoremap <C-j>      <Down>
 inoremap <C-k>      <Up>
 
+"                   Scroll up/down one line at a time more easily
+nnoremap <C-j>      <C-e>
+nnoremap <C-k>      <C-y>
+
 "                   Create a title
 nnoremap ,t         A <ESC>I <ESC>:ce<CR>O#<C-o>79a-<ESC>j^h<C-v>g_lygvkpjdd
-
-"                   Save some keystrokes when doing a Search-&-Replace
-"noremap ;;          :s:::g<Left><Left><Left>
-"noremap ;'          :s:::gc<Left><Left><Left><Left>
 
 "                   Shortcut to turn off search highlighting
 nnoremap ,n         :noh<CR>
