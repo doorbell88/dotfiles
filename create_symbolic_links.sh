@@ -220,8 +220,8 @@ echo
 tput setaf 1
 echo "Would you like to remove the backup files (without confirmation)?"
 echo -ne "  (y/n) > "
-tput sgr0
 read response
+tput sgr0
 
 
 #---------------------------------------
