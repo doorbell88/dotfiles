@@ -214,14 +214,15 @@ tput sgr0
 # ask to remove backups
 #---------------------------------------
 # sleep, and discard anything the user types during this period
-while read -e -t 1; do : ; done
+#while read -e -t 1; do : ; done
+sleep 2
 
 echo
 tput setaf 1
 echo "Would you like to remove the backup files (without confirmation)?"
 echo -ne "  (y/n) > "
-read response
 tput sgr0
+read response
 
 
 #---------------------------------------
