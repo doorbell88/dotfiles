@@ -92,16 +92,16 @@ nnoremap ,<         viwc<><ESC>P
 nnoremap ,>         viwc<><ESC>P
 
 "                   Remove surrounding quotes, parens, etc.
-nnoremap ,r"        F"xf"x
-nnoremap ,r'        F'xf'x
-nnoremap ,r(        F(%x<C-o>x
-nnoremap ,r)        f)%%x<C-o>x
-nnoremap ,r{        F{%x<C-o>x
-nnoremap ,r}        f}%%x<C-o>x
-nnoremap ,r[        F[%x<C-o>x
-nnoremap ,r]        f]%%x<C-o>x
-nnoremap ,r<        F<xf>x
-nnoremap ,r>        f>xF<x
+nnoremap ,r"        yi"va"p
+nnoremap ,r'        yi'va'p
+nnoremap ,r(        yi(va(p
+nnoremap ,r)        yi)va)p
+nnoremap ,r{        yi{va{p
+nnoremap ,r}        yi}va}p
+nnoremap ,r[        yi[va[p
+nnoremap ,r]        yi]va]p
+nnoremap ,r<        yi<va<p
+nnoremap ,r>        yi>va>p
 
 "                   Type closing quote/paren/etc after typing first one
 "inoremap ""         ""<Left>
