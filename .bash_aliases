@@ -16,11 +16,19 @@ alias prog="cd $PROGRAMMING_DIR"
 alias pyth="cd $PROGRAMMING_DIR/Python"
 alias scrip="cd $PROGRAMMING_DIR/Scripting"
 alias rpi="cd $PROGRAMMING_DIR/RPi"
+alias desk="cd ~/Desktop"
+
+
+#-------------------------------- GIT ALIASES ----------------------------------
+alias st='git status'
+alias br='git branch'
+alias lg='git log --graph'
+alias amne='git commit --amend --no-edit'
 
 
 #------------------------------ PROGRAM ALIASES --------------------------------
-alias aquarium='python ~/Desktop/Programming/Python/aquarium.py'
-alias weather='python ~/Desktop/Programming/RPi/weather_report.py'
+alias aquarium='python ~/Desktop/Programming/Python/Aquarium/aquarium.py'
+alias weather='python ~/Desktop/Programming/RPi/WeatherClock/terminal_printouts/weather_report.py'
 alias c='~/bin/color'
 
 
