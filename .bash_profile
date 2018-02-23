@@ -45,7 +45,8 @@ parse_git_branch() {
 }
 #export PS1="\u@\h \W\[\033[32m\]\$(parse_git_branch)\[\033[00m\] $ "
 #export PS1="\u: \W\[\033[32m\]\$(parse_git_branch)\[\033[00m\] $ "
-export PS1="\u: \W\[\033[32m\]$CYAN\$(parse_git_branch)\[\033[00m\] $ "
+#export PS1="\u: \W\[\033[32m\]$CYAN\$(parse_git_branch)\[\033[00m\] $ "
+export PS1="\u: \W\[\033[32m\]\[\033[36m\]\$(parse_git_branch)\[\033[00m\] $ "
 
 
 # so as not to be disturbed by Ctrl-S ctrl-Q in terminals:
