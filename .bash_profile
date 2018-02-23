@@ -13,15 +13,6 @@ if [ -f ~/.profile ]; then
 fi
 
 
-#---------------------------- SHELL CUSTOMIZATION ------------------------------
-export PS1='\u: \W \$ '
-export CLICOLOR=1
-export LSCOLORS=GxFxCxDxBxegedabagaced
-
-# so as not to be disturbed by Ctrl-S ctrl-Q in terminals:
-stty -ixon	
-
-
 #----------------------------------- COLORS ------------------------------------
 # Define some colors:
     BLACK=`tput setaf 0`
@@ -38,6 +29,24 @@ stty -ixon
     NOCOLOR=`tput sgr0`
 # Example
     # echo "Some text ${RED}in red color${NOCOLOR} no more color"
+
+
+#---------------------------- SHELL CUSTOMIZATION ------------------------------
+export PS1='\u: \W \$ '
+export CLICOLOR=1
+export LSCOLORS=GxFxCxDxBxegedabagaced
+
+# Git branch in prompt.
+parse_git_branch() {
+    git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
+}
+#export PS1="\u@\h \W\[\033[32m\]\$(parse_git_branch)\[\033[00m\] $ "
+#export PS1="\u: \W\[\033[32m\]\$(parse_git_branch)\[\033[00m\] $ "
+export PS1="\u: \W\[\033[32m\]$CYAN\$(parse_git_branch)\[\033[00m\] $ "
+
+
+# so as not to be disturbed by Ctrl-S ctrl-Q in terminals:
+stty -ixon	
 
 
 #--------------------------------- FUNCTIONS -----------------------------------
