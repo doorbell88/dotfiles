@@ -23,7 +23,12 @@ alias desk="cd ~/Desktop"
 alias st='git status'
 alias br='git branch'
 alias lg='git log --graph'
+alias am='git commit --amend'
 alias amne='git commit --amend --no-edit'
+
+# git repos
+alias pgc='cd ~/CardinalPeak/Bose/Professor/PGC_Automation'
+alias pgcv='source ~/CardinalPeak/Bose/Professor/venv_pgc/bin/activate'
 
 
 #------------------------------ PROGRAM ALIASES --------------------------------
