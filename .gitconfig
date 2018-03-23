@@ -1,0 +1,21 @@
+# This is Git's per-user configuration file.
+[user]
+	name = Kevin Klinkel
+	email = kgklinkel@gmail.com
+
+[alias]
+    lg1 = !"git lg1-specific --all --graph --abbrev-commit --decorate"
+    lg2 = !"git lg2-specific --all --graph --abbrev-commit --decorate"
+    lg3 = !"git lg3-specific --all --graph --abbrev-commit --decorate"
+
+    # see simplified versions of the log
+    lg1-specific = log --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim yellow)- %an%C(reset)%C(auto)%d%C(reset)'
+    lg2-specific = log --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(auto)%d %C(dim yellow)- %an%C(reset)%n''          %C(white)%s%C(reset)'
+    lg3-specific = log --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset) %C(bold cyan)(committed: %cD)%C(reset) %C(auto)%d%C(reset)%n''          %C(dim yellow)%an <%ae> (committer: %cn <%ce>)%C(reset)%n''          %C(white)%s%C(reset)'
+
+    # see current branch history
+    lg = log --graph --date=short --pretty=format:'%Cred%h%Creset %ad %s %C(yellow)%d%Creset %C(bold blue)<%an>%Creset'
+    # see whole branch history
+    hist = log --graph --date=short --full-history --all --pretty=format:'%Cred%h%Creset %ad %s %C(yellow)%d%Creset %C(bold blue)<%an>%Creset'
+    # --simplify-by-decoration collapses uninteresting linear parts of history
+    simp = log --graph --oneline --simplify-by-decoration
