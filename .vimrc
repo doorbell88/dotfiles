@@ -46,12 +46,14 @@ nnoremap Y          y$
 vnoremap //         y/<C-R>"<CR>
 
 "                   Comment visual selection (Visual, or Visual Line)
-vnoremap ,c         ^o^<C-v>I#<ESC>
-nnoremap ,c         v^o^<C-v>I#<ESC>j0
+vnoremap ,c         ^o^<C-v>I# <ESC>
+nnoremap ,c         v^o^<C-v>I# <ESC>j0
 
 "                   Uncomment visual selection (Visual, or Visual Line)
-vnoremap ,u         :norm ^x<CR>
-nnoremap ,u         :norm ^x<CR>j0
+"vnoremap ,u         :norm ^x<CR>
+"nnoremap ,u         :norm ^x<CR>j0
+vnoremap ,u         v^o^<C-v>whx
+nnoremap ,u         :s:\(^\s*\)\(#\s\=\)\(\s*\):\1\3:<CR>:noh<CR>
 
 "                   Insert space below(j) above(k) left(j) right(l) w/o insert
 "nnoremap <C-j>      o<ESC>
