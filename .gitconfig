@@ -19,3 +19,5 @@
     hist = log --graph --date=short --full-history --all --pretty=format:'%Cred%h%Creset %ad %s %C(yellow)%d%Creset %C(bold blue)<%an>%Creset'
     # --simplify-by-decoration collapses uninteresting linear parts of history
     simp = log --graph --oneline --simplify-by-decoration
+
+    stls = stash list
