@@ -282,6 +282,8 @@ call vundle#rc()
 Plugin 'scrooloose/nerdtree.git'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
+Plugin 'vim-python/python-syntax'
+"Plugin 'valloric/youcompleteme'
 
 " To get plugins from Vim Scripts, you can reference the plugin
 " by name as it appears on the site
