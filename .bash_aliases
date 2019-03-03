@@ -40,4 +40,4 @@ alias c='~/bin/color'
 #--------------------------- MISCELLANEOUS ALIASES -----------------------------
 #set 256 color when starting tmux
 #alias tmux='TERM=xterm-256color tmux'
-alias cals='cal; cal -m $(( ($(date +%m) %12) +1 ))'
+alias cals='cal; cal -d $(( $(date +%Y) + $(date +%m)/12))-$(( ($(date +%m) %12) +1 ))'
