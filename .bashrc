@@ -3,6 +3,7 @@ export PATH=/usr/local/sbin:$PATH
 export PATH=/usr/local/bin:$PATH
 export PATH=$PATH:~/bin
 export PATH=$PATH:~/Desktop/Programming/Scripting
+export PATH=$PATH:~/.local/bin
 
 
 #-------------------------------- PYTHON PATH ----------------------------------
@@ -11,7 +12,8 @@ export PATH=$PATH:~/Desktop/Programming/Scripting
 ###  NOTE --> the default python $(which python) is --> /usr/bin/python
 ###  (i.e. THE "site-packages" directory)
 
-#PYTHONPATH=/usr/local/lib/python2.7/site-packages
+export PYTHONPATH=$PYTHONPATH:/usr/local/lib/python2.7/site-packages
+# export PYTHONPATH=$PYTHONPATH:/usr/local/lib/python3.6/site-packages
 
 # NEVER TOUCH THIS... I think... :
 #PYTHONPATH=$PYTHONPATH:/System/Library/Frameworks/Python.framework/Versions/Current/lib/python2.7/
@@ -47,3 +49,6 @@ export PATH=$PATH:~/Desktop/Programming/Scripting
 #
 ## Source the virtualenvwrapper.sh script
 #source /usr/local/bin/virtualenvwrapper.sh
+if command -v pyenv 1>/dev/null 2>&1; then
+  eval "$(pyenv init -)"
+fi
