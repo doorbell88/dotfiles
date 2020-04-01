@@ -55,7 +55,7 @@ nnoremap ,%         v^o^<C-v>I% <ESC>j0
 "                   Uncomment visual selection (Visual, or Visual Line)
 "vnoremap ,u         :norm ^x<CR>
 "nnoremap ,u         :norm ^x<CR>j0
-vnoremap ,u         v^o^<C-v>whx
+vnoremap ,u         <C-v>^o^whx
 nnoremap ,u         :s:\(^\s*\)\([#%]\s\=\)\(\s*\):\1\3:<CR>:noh<CR>
 
 "                   Insert space below(j) above(k) left(j) right(l) w/o insert
