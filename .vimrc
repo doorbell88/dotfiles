@@ -181,8 +181,8 @@ syntax enable           " Use syntax highlighting
 "......................... gruvbox ............................
     colorscheme gruvbox
     set background=dark
-    let g:gruvbox_contrast_dark = 'hard'
-    let g:gruvbox_contrast_light = 'soft'
+    let g:gruvbox_contrast_dark = 'hard'    " hard, medium, soft
+    let g:gruvbox_contrast_light = 'soft'   " hard, medium, soft
 
 "______________________________________________________________
 "........................ solarized ...........................
