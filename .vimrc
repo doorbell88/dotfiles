@@ -178,32 +178,39 @@ endif
 syntax enable           " Use syntax highlighting
 
 "______________________________________________________________
-"........................ solarized ...........................
-    colorscheme solarized
-
-    if !has('gui_running')
-        " Compatibility for Terminal
-        let g:solarized_termtrans=1
-        if (&t_Co >= 256 || $TERM == 'xterm-256color')
-            " Do nothing, it handles itself.
-            let g:solarized_termcolors=256
-        else
-            " Make Solarized use 16 colors for Terminal support
-            let g:solarized_termcolors=16
-        endif
-    endif
-
+"......................... gruvbox ............................
+    colorscheme gruvbox
     set background=dark
-    let g:solarized_visibility = "high"
-    let g:solarized_contrast = "high"
+    let g:gruvbox_contrast_dark = 'hard'
+    let g:gruvbox_contrast_light = 'soft'
 
-    ".......................... colors ............................
-    " change Visual Mode highlighting colors
-    hi Visual ctermbg=Yellow ctermfg=DarkGray
-    " change Search Mode highlighting colors
-    hi Search cterm=None ctermfg=Black ctermbg=LightBlue
-    " change code folding so folded text is not bold or underline
-    hi Folded cterm=None
+"______________________________________________________________
+"........................ solarized ...........................
+    "colorscheme solarized
+
+    "if !has('gui_running')
+    "    " Compatibility for Terminal
+    "    let g:solarized_termtrans=1
+    "    if (&t_Co >= 256 || $TERM == 'xterm-256color')
+    "        " Do nothing, it handles itself.
+    "        let g:solarized_termcolors=256
+    "    else
+    "        " Make Solarized use 16 colors for Terminal support
+    "        let g:solarized_termcolors=16
+    "    endif
+    "endif
+
+    "set background=dark
+    "let g:solarized_visibility = "high"
+    "let g:solarized_contrast = "high"
+
+    "".......................... colors ............................
+    "" change Visual Mode highlighting colors
+    "hi Visual ctermbg=Yellow ctermfg=DarkGray
+    "" change Search Mode highlighting colors
+    "hi Search cterm=None ctermfg=Black ctermbg=LightBlue
+    "" change code folding so folded text is not bold or underline
+    "hi Folded cterm=None
 
 "______________________________________________________________
 "..................... space-vim-dark .........................
@@ -291,6 +298,7 @@ Plugin 'scrooloose/nerdtree.git'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'vim-python/python-syntax'
+Plugin 'morhetz/gruvbox'
 "Plugin 'valloric/youcompleteme'
 
 " To get plugins from Vim Scripts, you can reference the plugin
