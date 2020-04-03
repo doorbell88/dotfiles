@@ -136,6 +136,10 @@ nnoremap ,t         A <ESC>I <ESC>:ce<CR>O#<C-o>79a-<ESC>j^h<C-v>g_lygvkpjdd
 "                   Shortcut to turn off search highlighting
 nnoremap ,n         :noh<CR>
 
+"                   center on next search item
+nnoremap n          nzz
+nnoremap N          Nzz
+
 
 "------------------------------- Abbreviations ---------------------------------
 " Python, Bash
