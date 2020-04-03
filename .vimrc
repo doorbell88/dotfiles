@@ -38,6 +38,9 @@ set backspace=indent,eol,start
 set hidden
 set switchbuf=useopen,usetab
 
+" set scroll offset (scrolloff) For scrolling with the cursor. Default is 0
+set scrolloff=5         " scroll offset ('set so=5')
+
 "-------------------------------- Key Mappings ---------------------------------
 "                   Yank until end of line (instead of entire line)
 nnoremap Y          y$
