@@ -332,7 +332,7 @@ autocmd bufenter * if (winnr("$") == 1
 
 
 "---------------------------------- Airline ------------------------------------
-let g:airline_theme = 'wombat'                  " luna, solarized, wombat
+let g:airline_theme = 'gruvbox'                 " luna, solarized, wombat, gruvbox
 let g:airline#extensions#tabline#enabled = 1    " Display all buffers
 let g:airline#extensions#tabline#fnamemod =':t' " Display just the filename
 
