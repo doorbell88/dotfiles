@@ -10,9 +10,14 @@ set shiftwidth=4        " shiftwidth is same as tab
 set expandtab           " expand tabs into spaces as you type
 set textwidth=80        " for auto-formatting paragraphs
 
+" searching
 set incsearch           " do incremental searching
 set hlsearch            " do highlight searching
-"set ignorecase          " ignore case in searches
+set cursorcolumn        " highlight the column the cursor is on
+set cursorline          " highlight the line the cursor is on
+"highlight clear CursorLine " only the line number will be highlighted
+"(to change the number line)
+"highlight CursorLineNR ctermbg=red
 
 set laststatus=2        " always show status bar
 set statusline+=%F      " show filepath/filename
@@ -140,12 +145,17 @@ nnoremap <C-k>      <C-y>
 "                   Create a title
 nnoremap ,t         A <ESC>I <ESC>:ce<CR>O#<C-o>79a-<ESC>j^h<C-v>g_lygvkpjdd
 
-"                   Shortcut to turn off search highlighting
-nnoremap ,n         :noh<CR>
-
 "                   center on next search item
 nnoremap n          nzz
 nnoremap N          Nzz
+"nnoremap <silent> n n:set cursorline cursorcolumn<CR>
+"nnoremap <silent> N N:set cursorline cursorcolumn<CR>
+
+"                   Shortcut to turn off search highlighting
+"nnoremap ,n         :noh<CR>
+nnoremap ,n         :noh<CR>:set nocursorline nocursorcolumn<CR>
+nnoremap <silent> <Leader>c :set cursorline! cursorcolumn!<CR>
+
 
 "                   press space for code folding
 nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
@@ -200,6 +210,37 @@ augroup vimrc
     au BufWinEnter * if &fdm == 'indent' | setlocal foldmethod=manual | endif
 augroup END
 
+" different options for centering serach terms
+nnoremap <silent> <F4> :call <SID>SearchMode()<CR>
+function s:SearchMode()
+    if !exists('s:searchmode') || s:searchmode == 0
+        echo 'Search next: scroll hit to middle if not on same page'
+        nnoremap <silent> n n:call <SID>MaybeMiddle()<CR>:set cursorline cursorcolumn<CR>
+        nnoremap <silent> N N:call <SID>MaybeMiddle()<CR>:set cursorline cursorcolumn<CR>
+        let s:searchmode = 1
+    elseif s:searchmode == 1
+        echo 'Search next: scroll hit to middle'
+        "nnoremap n nzz
+        "nnoremap N Nzz
+        nnoremap <silent> n nzz:set cursorline cursorcolumn<CR>
+        nnoremap <silent> N Nzz:set cursorline cursorcolumn<CR>
+        let s:searchmode = 2
+    else
+        echo 'Search next: normal'
+        nunmap n
+        nunmap N
+        nnoremap <silent> n n:set cursorline cursorcolumn<CR>
+        nnoremap <silent> N N:set cursorline cursorcolumn<CR>
+        let s:searchmode = 0
+    endif
+endfunction
+
+" If cursor is in first or last line of window, scroll to middle line.
+function s:MaybeMiddle()
+    if winline() == 1 || winline() == winheight(0)
+        normal! zz
+    endif
+endfunction
 
 "================================ ColorScheme ==================================
 if $TERM == 'screen'    " get  256 colors to work while in tmux
