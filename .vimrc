@@ -148,8 +148,8 @@ nnoremap ,t         A <ESC>I <ESC>:ce<CR>O#<C-o>79a-<ESC>j^h<C-v>g_lygvkpjdd
 "                   center on next search item
 "nnoremap n          nzz
 "nnoremap N          Nzz
-nnoremap <silent> n n:set cursorline cursorcolumn<CR>
-nnoremap <silent> N N:set cursorline cursorcolumn<CR>
+nnoremap <silent> n n:set cursorline cursorcolumn<CR>zv
+nnoremap <silent> N N:set cursorline cursorcolumn<CR>zv
 
 "                   Shortcut to turn off search highlighting
 "nnoremap ,n         :noh<CR>
@@ -215,22 +215,22 @@ nnoremap <silent> <F4> :call <SID>SearchMode()<CR>
 function s:SearchMode()
     if !exists('s:searchmode') || s:searchmode == 0
         echo 'Search next: scroll hit to middle if not on same page'
-        nnoremap <silent> n n:call <SID>MaybeMiddle()<CR>:set cursorline cursorcolumn<CR>
-        nnoremap <silent> N N:call <SID>MaybeMiddle()<CR>:set cursorline cursorcolumn<CR>
+        nnoremap <silent> n n:call <SID>MaybeMiddle()<CR>:set cursorline cursorcolumn<CR>zv
+        nnoremap <silent> N N:call <SID>MaybeMiddle()<CR>:set cursorline cursorcolumn<CR>zv
         let s:searchmode = 1
     elseif s:searchmode == 1
         echo 'Search next: scroll hit to middle'
         "nnoremap n nzz
         "nnoremap N Nzz
-        nnoremap <silent> n nzz:set cursorline cursorcolumn<CR>
-        nnoremap <silent> N Nzz:set cursorline cursorcolumn<CR>
+        nnoremap <silent> n nzz:set cursorline cursorcolumn<CR>zv
+        nnoremap <silent> N Nzz:set cursorline cursorcolumn<CR>zv
         let s:searchmode = 2
     else
         echo 'Search next: normal'
         nunmap n
         nunmap N
-        nnoremap <silent> n n:set cursorline cursorcolumn<CR>
-        nnoremap <silent> N N:set cursorline cursorcolumn<CR>
+        nnoremap <silent> n n:set cursorline cursorcolumn<CR>zv
+        nnoremap <silent> N N:set cursorline cursorcolumn<CR>zv
         let s:searchmode = 0
     endif
 endfunction
