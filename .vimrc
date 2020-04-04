@@ -143,7 +143,7 @@ nnoremap N          Nzz
 
 "                   press space for code folding
 nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
-" (for the below vnoremap, must do:  ':set fdm=manual')
+" (for the below vnoremap, must have foldmethod=manual)
 vnoremap <silent> <Space> zf
 
 
