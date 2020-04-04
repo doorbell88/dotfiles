@@ -39,7 +39,7 @@ set hidden
 set switchbuf=useopen,usetab
 
 " set scroll offset (scrolloff) For scrolling with the cursor. Default is 0
-set scrolloff=5         " scroll offset ('set so=5')
+set scrolloff=2         " scroll offset ('set so=5')
 
 "-------------------------------- Key Mappings ---------------------------------
 "                   Yank until end of line (instead of entire line)
@@ -139,6 +139,11 @@ nnoremap ,n         :noh<CR>
 "                   center on next search item
 nnoremap n          nzz
 nnoremap N          Nzz
+
+"                   press space for code folding
+nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
+" (for the below vnoremap, must do:  ':set fdm=manual')
+vnoremap <silent> <Space> zf
 
 
 "------------------------------- Abbreviations ---------------------------------
