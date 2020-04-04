@@ -237,7 +237,7 @@ endfunction
 
 " If cursor is in first or last line of window, scroll to middle line.
 function s:MaybeMiddle()
-    if winline() == 1 || winline() == winheight(0)
+    if winline() < &so || winline() > winheight(0) - &so
         normal! zz
     endif
 endfunction
