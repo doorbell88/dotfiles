@@ -41,6 +41,7 @@ set switchbuf=useopen,usetab
 " set scroll offset (scrolloff) For scrolling with the cursor. Default is 0
 set scrolloff=2         " scroll offset ('set so=5')
 
+
 "-------------------------------- Key Mappings ---------------------------------
 "                   Yank until end of line (instead of entire line)
 nnoremap Y          y$
@@ -180,6 +181,18 @@ function! NumberToggle()
     endif
 endfunc
 nnoremap <silent> <C-n> :call NumberToggle()<cr>
+
+" Be able to use both MANUAL and INDENT foldmethods
+augroup vimrc
+    " This autocommand sets 'indent' as the fold method before a file is
+    " loaded, so that indent-based folds will be defined.
+    au BufReadPre * setlocal foldmethod=indent
+    " This one allows you to manually create folds while editing.
+    " It's executed after the modeline is read, so it won't change the fold
+    " method if the modeline set the fold method to something else like 'marker'
+    " or 'syntax'
+    au BufWinEnter * if &fdm == 'indent' | setlocal foldmethod=manual | endif
+augroup END
 
 
 "================================ ColorScheme ==================================
