@@ -5,9 +5,6 @@ set nocompatible
 
 set number              " Show line numbers
 
-set foldmethod=indent   " fold by indent
-set foldignore=         " fold comments along with everything else
-
 set tabstop=4           " tab is 4 spaces
 set shiftwidth=4        " shiftwidth is same as tab
 set expandtab           " expand tabs into spaces as you type
@@ -40,6 +37,15 @@ set switchbuf=useopen,usetab
 
 " set scroll offset (scrolloff) For scrolling with the cursor. Default is 0
 set scrolloff=2         " scroll offset ('set so=5')
+
+" >>>>>  CODE FOLDING <<<<<
+" Indent code folding
+set foldmethod=indent   " fold by indent
+set foldignore=         " fold comments along with everything else
+
+" Marker code folding
+"set foldmethod=marker
+set foldmarker=#Region,#End\ Region     " for Visual Basic
 
 
 "-------------------------------- Key Mappings ---------------------------------
