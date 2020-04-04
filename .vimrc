@@ -146,10 +146,10 @@ nnoremap <C-k>      <C-y>
 nnoremap ,t         A <ESC>I <ESC>:ce<CR>O#<C-o>79a-<ESC>j^h<C-v>g_lygvkpjdd
 
 "                   center on next search item
-nnoremap n          nzz
-nnoremap N          Nzz
-"nnoremap <silent> n n:set cursorline cursorcolumn<CR>
-"nnoremap <silent> N N:set cursorline cursorcolumn<CR>
+"nnoremap n          nzz
+"nnoremap N          Nzz
+nnoremap <silent> n n:set cursorline cursorcolumn<CR>
+nnoremap <silent> N N:set cursorline cursorcolumn<CR>
 
 "                   Shortcut to turn off search highlighting
 "nnoremap ,n         :noh<CR>
