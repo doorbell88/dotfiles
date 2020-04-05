@@ -10,15 +10,6 @@ set shiftwidth=4        " shiftwidth is same as tab
 set expandtab           " expand tabs into spaces as you type
 set textwidth=80        " for auto-formatting paragraphs
 
-" searching
-set incsearch           " do incremental searching
-set hlsearch            " do highlight searching
-set cursorcolumn        " highlight the column the cursor is on
-set cursorline          " highlight the line the cursor is on
-"highlight clear CursorLine " only the line number will be highlighted
-"(to change the number line)
-"highlight CursorLineNR ctermbg=red
-
 set laststatus=2        " always show status bar
 set statusline+=%F      " show filepath/filename
 
@@ -28,22 +19,33 @@ set showcmd             " display incomplete commands
 set timeoutlen=1000     " mapping delays
 set ttimeoutlen=0       " key code delays (delay after <ESC> key)
 
+" switch buffers without having to save
+set hidden
+set switchbuf=useopen,usetab
+
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
+
+" set scroll offset (scrolloff) For scrolling with the cursor. Default is 0
+set scrolloff=2         " scroll offset ('set so=5')
+
+" searching
+set incsearch           " do incremental searching
+set hlsearch            " do highlight searching
+
+" cursor
+set cursorcolumn        " highlight the column the cursor is on
+set cursorline          " highlight the line the cursor is on
+"highlight clear CursorLine          " only the line number will be highlighted
+"highlight CursorLineNR ctermbg=red  " (to change the number line highlight)
 
 " indentation
 "let g:pyindent_open_paren   = '&sw'
 "let g:pyindent_nested_paren = '&sw'
 "let g:pyindent_continue     = '&sw'
 
-" switch buffers without having to save
-set hidden
-set switchbuf=useopen,usetab
 
-" set scroll offset (scrolloff) For scrolling with the cursor. Default is 0
-set scrolloff=2         " scroll offset ('set so=5')
-
-" >>>>>  CODE FOLDING <<<<<
+" >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>  CODE FOLDING  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 " Indent code folding
 set foldmethod=indent   " fold by indent
 set foldignore=         " fold comments along with everything else
@@ -51,6 +53,18 @@ set foldignore=         " fold comments along with everything else
 " Marker code folding
 "set foldmethod=marker
 set foldmarker=#Region,#End\ Region     " for Visual Basic
+
+" set the text that appears in a fold
+"set foldtext=MyFoldText()
+"function MyFoldText()
+"    let line = getline(v:foldstart)
+"    let sub = substitute(line, '/\*\|\*/\|{{{\d\=', '', 'g')
+"    return v:folddashes . sub
+"endfunction
+"
+" set fill characters (changing fold fill from '-' to '' '')
+set fillchars=stl:^,stlnc:-,vert:\|,fold:\ ,diff:-
+" >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>----------------<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
 
 "-------------------------------- Key Mappings ---------------------------------
@@ -145,22 +159,23 @@ nnoremap <C-k>      <C-y>
 "                   Create a title
 nnoremap ,t         A <ESC>I <ESC>:ce<CR>O#<C-o>79a-<ESC>j^h<C-v>g_lygvkpjdd
 
-"                   center on next search item
-"nnoremap n          nzz
-"nnoremap N          Nzz
-nnoremap <silent> n n:set cursorline cursorcolumn<CR>zv
-nnoremap <silent> N N:set cursorline cursorcolumn<CR>zv
-
 "                   Shortcut to turn off search highlighting
-"nnoremap ,n         :noh<CR>
-nnoremap ,n         :noh<CR>:set nocursorline nocursorcolumn<CR>
-nnoremap <silent> <Leader>c :set cursorline! cursorcolumn!<CR>
-
+nnoremap ,n         :noh<CR>
+"nnoremap ,n         :noh<CR>:set nocursorline nocursorcolumn<CR>
 
 "                   press space for code folding
 nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
 " (for the below vnoremap, must have foldmethod=manual)
 vnoremap <silent> <Space> zf
+
+" TOGGLES CROSSHAIRS FOR CURSOR LINE AND COLUMN
+"nnoremap <silent> <Leader>c :set cursorline! cursorcolumn!<CR>
+" toggles cursor column
+nnoremap <silent> <Leader>c :set cursorcolumn!<CR>
+
+" HIGHLIGHTS THE CURRENT LINE (AND SETS A MARK: 'L)
+" --> (enter ':match' to clear the highlight)
+nnoremap <silent> <Leader>l ml:execute 'match Search /\%'.line('.').'l/'<CR>
 
 
 "------------------------------- Abbreviations ---------------------------------
@@ -215,22 +230,24 @@ nnoremap <silent> <F4> :call <SID>SearchMode()<CR>
 function s:SearchMode()
     if !exists('s:searchmode') || s:searchmode == 0
         echo 'Search next: scroll hit to middle if not on same page'
-        nnoremap <silent> n n:call <SID>MaybeMiddle()<CR>:set cursorline cursorcolumn<CR>zv
-        nnoremap <silent> N N:call <SID>MaybeMiddle()<CR>:set cursorline cursorcolumn<CR>zv
+        nnoremap <silent> N N:call <SID>MaybeMiddle()<CR>
+        nnoremap <silent> n n:call <SID>MaybeMiddle()<CR>
+        "nnoremap <silent> n n:call <SID>MaybeMiddle()<CR>:set cursorline cursorcolumn<CR>zv
+        "nnoremap <silent> N N:call <SID>MaybeMiddle()<CR>:set cursorline cursorcolumn<CR>zv
         let s:searchmode = 1
     elseif s:searchmode == 1
         echo 'Search next: scroll hit to middle'
-        "nnoremap n nzz
-        "nnoremap N Nzz
-        nnoremap <silent> n nzz:set cursorline cursorcolumn<CR>zv
-        nnoremap <silent> N Nzz:set cursorline cursorcolumn<CR>zv
+        nnoremap n nzz
+        nnoremap N Nzz
+        "nnoremap <silent> n nzz:set cursorline cursorcolumn<CR>zv
+        "nnoremap <silent> N Nzz:set cursorline cursorcolumn<CR>zv
         let s:searchmode = 2
     else
         echo 'Search next: normal'
         nunmap n
         nunmap N
-        nnoremap <silent> n n:set cursorline cursorcolumn<CR>zv
-        nnoremap <silent> N N:set cursorline cursorcolumn<CR>zv
+        "nnoremap <silent> n n:set cursorline cursorcolumn<CR>zv
+        "nnoremap <silent> N N:set cursorline cursorcolumn<CR>zv
         let s:searchmode = 0
     endif
 endfunction
