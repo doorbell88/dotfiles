@@ -63,7 +63,7 @@ set foldmarker=#Region,#End\ Region     " for Visual Basic
 "endfunction
 "
 " set fill characters (changing fold fill from '-' to '' '')
-set fillchars=stl:^,stlnc:-,vert:\|,fold:\ ,diff:-
+set fillchars=stl:\ ,stlnc:-,vert:\|,fold:\ ,diff:-
 " >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>----------------<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
 
