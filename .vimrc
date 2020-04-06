@@ -259,6 +259,10 @@ function s:MaybeMiddle()
     endif
 endfunction
 
+" automatically highlights terms same as that under cursor
+autocmd CursorMoved * exe printf('match IncSearch /\V\<%s\>/', escape(expand('<cword>'), '/\'))
+
+
 "================================ ColorScheme ==================================
 if $TERM == 'screen'    " get  256 colors to work while in tmux
     set t_Co=256
