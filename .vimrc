@@ -260,6 +260,8 @@ function s:MaybeMiddle()
 endfunction
 
 " automatically highlights terms same as that under cursor
+" --> To use colors other than the IncSearch color, find them using this command:
+"     :so $VIMRUNTIME/syntax/hitest.vim
 autocmd CursorMoved * exe printf('match IncSearch /\V\<%s\>/', escape(expand('<cword>'), '/\'))
 
 
