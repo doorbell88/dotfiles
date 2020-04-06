@@ -34,7 +34,7 @@ set incsearch           " do incremental searching
 set hlsearch            " do highlight searching
 
 " cursor
-set cursorcolumn        " highlight the column the cursor is on
+"set cursorcolumn        " highlight the column the cursor is on
 set cursorline          " highlight the line the cursor is on
 "highlight clear CursorLine          " only the line number will be highlighted
 "highlight CursorLineNR ctermbg=red  " (to change the number line highlight)
@@ -262,7 +262,13 @@ endfunction
 " automatically highlights terms same as that under cursor
 " --> To use colors other than the IncSearch color, find them using this command:
 "     :so $VIMRUNTIME/syntax/hitest.vim
-autocmd CursorMoved * exe printf('match IncSearch /\V\<%s\>/', escape(expand('<cword>'), '/\'))
+"autocmd CursorMoved * exe printf('match IncSearch /\V\<%s\>/', escape(expand('<cword>'), '/\'))
+"autocmd CursorMoved * exe printf('match PmenuSel /\V\<%s\>/', escape(expand('<cword>'), '/\'))
+
+" allows toggling the cursor highlighting using the mapping below
+autocmd CursorMoved * exe exists("HlUnderCursor")?HlUnderCursor?printf('match PmenuSel /\V\<%s\>/', escape(expand('<cword>'), '/\')):'match none':""
+let HlUnderCursor=1
+nnoremap <silent> <F3> :exe "let HlUnderCursor=exists(\"HlUnderCursor\")?HlUnderCursor*-1+1:1"<CR>
 
 
 "================================ ColorScheme ==================================
