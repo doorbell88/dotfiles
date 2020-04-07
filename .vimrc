@@ -175,7 +175,8 @@ nnoremap <silent> <Leader>c :set cursorcolumn!<CR>
 
 " HIGHLIGHTS THE CURRENT LINE (AND SETS A MARK: 'L)
 " --> (enter ':match' to clear the highlight)
-nnoremap <silent> <Leader>l ml:execute 'match Search /\%'.line('.').'l/'<CR>
+"nnoremap <silent> <Leader>l ml:execute 'match Search /\%'.line('.').'l/'<CR>
+nnoremap <silent> <Leader>l ml:execute 'match Search /\%'.line('.').'l/'<CR>:autocmd!<CR>:source $MYVIMRC<CR>
 
 
 "------------------------------- Abbreviations ---------------------------------
@@ -266,7 +267,8 @@ endfunction
 "autocmd CursorMoved * exe printf('match PmenuSel /\V\<%s\>/', escape(expand('<cword>'), '/\'))
 
 " allows toggling the cursor highlighting using the mapping below
-autocmd CursorMoved * exe exists("HlUnderCursor")?HlUnderCursor?printf('match PmenuSel /\V\<%s\>/', escape(expand('<cword>'), '/\')):'match none':""
+"autocmd CursorMoved * exe exists("HlUnderCursor")?HlUnderCursor?printf('match PmenuSel /\V\<%s\>/', escape(expand('<cword>'), '/\')):'match none':""
+nnoremap <silent> <leader>w :autocmd CursorMoved * exe exists("HlUnderCursor")?HlUnderCursor?printf('match PmenuSel /\V\<%s\>/', escape(expand('<cword>'), '/\')):'match none':""<CR>
 let HlUnderCursor=1
 nnoremap <silent> <F3> :exe "let HlUnderCursor=exists(\"HlUnderCursor\")?HlUnderCursor*-1+1:1"<CR>
 
