@@ -160,8 +160,8 @@ nnoremap <C-k>      <C-y>
 nnoremap ,t         A <ESC>I <ESC>:ce<CR>O#<C-o>79a-<ESC>j^h<C-v>g_lygvkpjdd
 
 "                   Shortcut to turn off search highlighting
-nmap ,n             :noh<CR>:match<CR><F3>
-"nnoremap ,n         :noh<CR>:set nocursorline nocursorcolumn<CR>
+nnoremap ,n         :noh<CR>
+nmap ,m             :match<CR><F3>
 
 "                   press space for code folding
 nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
@@ -176,7 +176,7 @@ nnoremap <silent> <Leader>c :set cursorcolumn!<CR>
 " HIGHLIGHTS THE CURRENT LINE (AND SETS A MARK: 'L)
 " --> (enter ':match' to clear the highlight)
 "nnoremap <silent> <Leader>l ml:execute 'match Search /\%'.line('.').'l/'<CR>
-nmap <silent> <Leader>l ml:execute 'match Search /\%'.line('.').'l/'<CR>:autocmd!<CR><F3>
+nmap <silent> <Leader>l ml:execute 'match Search /\%'.line('.').'l/'<CR><F3>
 
 " source vimrc file
 nnoremap <Leader>s :source $MYVIMRC<CR>
@@ -288,6 +288,7 @@ function! TurnOffHLWordUnderCursor()
         augroup HLWordUnderCursor
             autocmd!
         augroup END
+        exe printf('match')
     endif
 endfunction
 nnoremap <silent> <F3> :call TurnOffHLWordUnderCursor()<CR>
