@@ -160,7 +160,7 @@ nnoremap <C-k>      <C-y>
 nnoremap ,t         A <ESC>I <ESC>:ce<CR>O#<C-o>79a-<ESC>j^h<C-v>g_lygvkpjdd
 
 "                   Shortcut to turn off search highlighting
-nnoremap ,n         :noh<CR>:match<CR>:autocmd!<CR>
+nmap ,n             :noh<CR>:match<CR><F3>
 "nnoremap ,n         :noh<CR>:set nocursorline nocursorcolumn<CR>
 
 "                   press space for code folding
@@ -176,10 +176,10 @@ nnoremap <silent> <Leader>c :set cursorcolumn!<CR>
 " HIGHLIGHTS THE CURRENT LINE (AND SETS A MARK: 'L)
 " --> (enter ':match' to clear the highlight)
 "nnoremap <silent> <Leader>l ml:execute 'match Search /\%'.line('.').'l/'<CR>
-nnoremap <silent> <Leader>l ml:execute 'match Search /\%'.line('.').'l/'<CR>:autocmd!<CR>:source $MYVIMRC<CR>
+nmap <silent> <Leader>l ml:execute 'match Search /\%'.line('.').'l/'<CR>:autocmd!<CR><F3>
 
 " source vimrc file
-nnoremap <silent> <Leader>s :source $MYVIMRC<CR>
+nnoremap <Leader>s :source $MYVIMRC<CR>
 
 
 "------------------------------- Abbreviations ---------------------------------
@@ -263,24 +263,34 @@ function s:MaybeMiddle()
     endif
 endfunction
 
-" --------------------------------------------------------
+" -----------------------------------------------------------------------------
 " automatically highlights terms same as that under cursor
-" --------------------------------------------------------
 " --> To use colors other than the IncSearch color, find them using this command:
 "     :so $VIMRUNTIME/syntax/hitest.vim
-"autocmd CursorMoved * exe printf('match IncSearch /\V\<%s\>/', escape(expand('<cword>'), '/\'))
-"autocmd CursorMoved * exe printf('match PmenuSel /\V\<%s\>/', escape(expand('<cword>'), '/\'))
+" --------------------------------------------------------
+function! ToggleHLWordUnderCursor()
+    if exists('#HLWordUnderCursor#CursorMoved')
+        augroup HLWordUnderCursor
+            autocmd!
+        augroup END
+        exe printf('match')
+    else
+        augroup HLWordUnderCursor
+            autocmd!
+            autocmd CursorMoved * exe printf('match IncSearch /\V\<%s\>/', escape(expand('<cword>'), '/\'))
+        augroup END
+    endif
+endfunction
+nnoremap <silent> <leader>w :call ToggleHLWordUnderCursor()<CR>
 
-" allows toggling the cursor highlighting using the mapping below
-"autocmd CursorMoved * exe exists("HlUnderCursor")?HlUnderCursor?printf('match PmenuSel /\V\<%s\>/', escape(expand('<cword>'), '/\')):'match none':""
-
-"nnoremap <silent> <leader>w :autocmd CursorMoved * exe exists("HlUnderCursor")?HlUnderCursor?printf('match IncSearch /\V\<%s\>/', escape(expand('<cword>'), '/\')):'match none':""<CR>
-"let HlUnderCursor=1
-"nnoremap <silent> <F3> :exe "let HlUnderCursor=exists(\"HlUnderCursor\")?HlUnderCursor*-1+1:1"<CR>
-"nmap <silent> <leader>h :autocmd!<CR>\w<F3>lhhl
-
-" version 3 of the above stuff
-nnoremap <silent> <leader>w :autocmd CursorMoved * exe printf('match IncSearch /\V\<%s\>/', escape(expand('<cword>'), '/\'))<CR>
+function! TurnOffHLWordUnderCursor()
+    if exists('#HLWordUnderCursor#CursorMoved')
+        augroup HLWordUnderCursor
+            autocmd!
+        augroup END
+    endif
+endfunction
+nnoremap <silent> <F3> :call TurnOffHLWordUnderCursor()<CR>
 
 
 "================================ ColorScheme ==================================
