@@ -160,7 +160,7 @@ nnoremap <C-k>      <C-y>
 nnoremap ,t         A <ESC>I <ESC>:ce<CR>O#<C-o>79a-<ESC>j^h<C-v>g_lygvkpjdd
 
 "                   Shortcut to turn off search highlighting
-nnoremap ,n         :noh<CR>
+nnoremap ,n         :noh<CR>:match<CR>
 "nnoremap ,n         :noh<CR>:set nocursorline nocursorcolumn<CR>
 
 "                   press space for code folding
@@ -177,6 +177,9 @@ nnoremap <silent> <Leader>c :set cursorcolumn!<CR>
 " --> (enter ':match' to clear the highlight)
 "nnoremap <silent> <Leader>l ml:execute 'match Search /\%'.line('.').'l/'<CR>
 nnoremap <silent> <Leader>l ml:execute 'match Search /\%'.line('.').'l/'<CR>:autocmd!<CR>:source $MYVIMRC<CR>
+
+" source vimrc file
+nnoremap <silent> <Leader>s :source $MYVIMRC<CR>
 
 
 "------------------------------- Abbreviations ---------------------------------
@@ -260,7 +263,9 @@ function s:MaybeMiddle()
     endif
 endfunction
 
+" --------------------------------------------------------
 " automatically highlights terms same as that under cursor
+" --------------------------------------------------------
 " --> To use colors other than the IncSearch color, find them using this command:
 "     :so $VIMRUNTIME/syntax/hitest.vim
 "autocmd CursorMoved * exe printf('match IncSearch /\V\<%s\>/', escape(expand('<cword>'), '/\'))
@@ -268,7 +273,7 @@ endfunction
 
 " allows toggling the cursor highlighting using the mapping below
 "autocmd CursorMoved * exe exists("HlUnderCursor")?HlUnderCursor?printf('match PmenuSel /\V\<%s\>/', escape(expand('<cword>'), '/\')):'match none':""
-nnoremap <silent> <leader>w :autocmd CursorMoved * exe exists("HlUnderCursor")?HlUnderCursor?printf('match PmenuSel /\V\<%s\>/', escape(expand('<cword>'), '/\')):'match none':""<CR>
+nnoremap <silent> <leader>w :autocmd CursorMoved * exe exists("HlUnderCursor")?HlUnderCursor?printf('match IncSearch /\V\<%s\>/', escape(expand('<cword>'), '/\')):'match none':""<CR>
 let HlUnderCursor=1
 nnoremap <silent> <F3> :exe "let HlUnderCursor=exists(\"HlUnderCursor\")?HlUnderCursor*-1+1:1"<CR>
 
