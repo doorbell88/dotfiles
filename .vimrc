@@ -160,7 +160,7 @@ nnoremap <C-k>      <C-y>
 nnoremap ,t         A <ESC>I <ESC>:ce<CR>O#<C-o>79a-<ESC>j^h<C-v>g_lygvkpjdd
 
 "                   Shortcut to turn off search highlighting
-nnoremap ,n         :noh<CR>:match<CR>
+nnoremap ,n         :noh<CR>:match<CR>:autocmd!<CR>
 "nnoremap ,n         :noh<CR>:set nocursorline nocursorcolumn<CR>
 
 "                   press space for code folding
@@ -273,9 +273,14 @@ endfunction
 
 " allows toggling the cursor highlighting using the mapping below
 "autocmd CursorMoved * exe exists("HlUnderCursor")?HlUnderCursor?printf('match PmenuSel /\V\<%s\>/', escape(expand('<cword>'), '/\')):'match none':""
-nnoremap <silent> <leader>w :autocmd CursorMoved * exe exists("HlUnderCursor")?HlUnderCursor?printf('match IncSearch /\V\<%s\>/', escape(expand('<cword>'), '/\')):'match none':""<CR>
-let HlUnderCursor=1
-nnoremap <silent> <leader>h :exe "let HlUnderCursor=exists(\"HlUnderCursor\")?HlUnderCursor*-1+1:1"<CR>
+
+"nnoremap <silent> <leader>w :autocmd CursorMoved * exe exists("HlUnderCursor")?HlUnderCursor?printf('match IncSearch /\V\<%s\>/', escape(expand('<cword>'), '/\')):'match none':""<CR>
+"let HlUnderCursor=1
+"nnoremap <silent> <F3> :exe "let HlUnderCursor=exists(\"HlUnderCursor\")?HlUnderCursor*-1+1:1"<CR>
+"nmap <silent> <leader>h :autocmd!<CR>\w<F3>lhhl
+
+" version 3 of the above stuff
+nnoremap <silent> <leader>w :autocmd CursorMoved * exe printf('match IncSearch /\V\<%s\>/', escape(expand('<cword>'), '/\'))<CR>
 
 
 "================================ ColorScheme ==================================
