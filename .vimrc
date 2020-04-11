@@ -47,7 +47,7 @@ set cursorline          " highlight the line the cursor is on
 
 " >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>  CODE FOLDING  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 " Indent code folding
-set foldmethod=indent   " fold by indent
+"set foldmethod=indent   " fold by indent
 set foldignore=         " fold comments along with everything else
 
 " Marker code folding
