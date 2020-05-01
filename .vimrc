@@ -163,6 +163,11 @@ nnoremap <C-k>      <C-y>
 "                   Create a title
 nnoremap ,t         A <ESC>I <ESC>:ce<CR>O#<C-o>79a-<ESC>j^h<C-v>g_lygvkpjdd
 
+"                   Create an underline of the current line
+nnoremap ,-         yyp^vg_r-
+nnoremap ,=         yyP^vg_r=
+
+
 "                   Shortcut to turn off search highlighting
 nnoremap ,n         :noh<CR>
 nmap ,m             :match<CR><F3>
