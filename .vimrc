@@ -71,6 +71,9 @@ set fillchars=stl:\ ,stlnc:-,vert:\|,fold:\ ,diff:-
 "                   Yank until end of line (instead of entire line)
 nnoremap Y          y$
 
+"                   use tab in normal mode to go forward WORD
+nnoremap <TAB>      W
+
 "                   Search for what is highlighted in VISUAL MODE
 vnoremap //         y/<C-R>"<CR>
 
