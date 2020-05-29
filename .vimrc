@@ -68,6 +68,9 @@ set fillchars=stl:\ ,stlnc:-,vert:\|,fold:\ ,diff:-
 
 
 "-------------------------------- Key Mappings ---------------------------------
+"                   jk for escape
+inoremap jk         <ESC>
+
 "                   Yank until end of line (instead of entire line)
 nnoremap Y          y$
 
