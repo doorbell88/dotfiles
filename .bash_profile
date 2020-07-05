@@ -38,6 +38,8 @@ test -f ~/.git-completion.bash && . $_
 export PS1='\u: \W \$ '
 export CLICOLOR=1
 export LSCOLORS=GxFxCxDxBxegedabagaced
+# ignore duplicates when pressing up arrow for terminal history
+export HISTCONTROL=ignoredups
 
 # Git branch in prompt.
 parse_git_branch() {
