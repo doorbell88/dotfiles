@@ -388,7 +388,7 @@ if has("autocmd")
         \ endif
     augroup END
 else
-    set autoindent        " always set autoindenting on
+    "set autoindent        " always set autoindenting on
 endif
 
 " Convenient command to see the difference between the current buffer and the
@@ -432,6 +432,7 @@ Plugin 'vim-airline/vim-airline-themes'
 Plugin 'vim-python/python-syntax'
 Plugin 'morhetz/gruvbox'
 "Plugin 'valloric/youcompleteme'
+Plugin 'tpope/vim-abolish.git'
 
 " To get plugins from Vim Scripts, you can reference the plugin
 " by name as it appears on the site
